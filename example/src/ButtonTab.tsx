@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { StyleSheet, Text, View } from "react-native";
-import { Button, ButtonTypes, ITooltip, Themes } from "@quyenph/rn-components";
+import { Button, ButtonTypes, ITooltip, Themes } from "@quyendev/rn-components";
 
 export default function ButtonTab() {
   const [buttonDisable, setButtonDisable] = React.useState<boolean>(false);

@@ -6,7 +6,7 @@ import {
   BaseSearch,
   HeaderTypes,
   Themes,
-} from "@quyenph/rn-components";
+} from "@quyendev/rn-components";
 import { Text, TouchableOpacity } from "react-native";
 
 export const HeaderDefault: FunctionComponent = () => {

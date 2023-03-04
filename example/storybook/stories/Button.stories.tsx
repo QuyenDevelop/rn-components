@@ -6,7 +6,7 @@ import {
   ButtonProps,
   ButtonSizes,
   ButtonTypes,
-} from "@quyenph/rn-components";
+} from "@quyendev/rn-components";
 import { boolean, number, select, text } from "@storybook/addon-knobs";
 // import { Text } from "react-native";
 import { ContainerView } from "../components";

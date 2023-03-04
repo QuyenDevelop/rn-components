@@ -6,7 +6,7 @@ import {
   ITabItemProps,
   ITabView,
   TabModel,
-} from "@quyenph/rn-components";
+} from "@quyendev/rn-components";
 import { FlexCenterView } from ".";
 
 export const TabViewPrimary: FunctionComponent = () => {

@@ -1,16 +1,17 @@
-# @quyenph/rn-components
+# @quyendev/rn-components
 
 Basic some regular compoents in usually using in proeject
 
 ## Installation
 
 ```
-npm install @quyenph/rn-components
+npm install @quyendev/rn-components
 ```
+
 hoặc
 
 ```
-yarn add @quyenph/rn-components
+yarn add @quyendev/rn-components
 ```
 
 ## Usage
@@ -22,7 +23,7 @@ import {
   ITabBarItem,
   ITabItemProps,
   TabModel,
-} from "@quyenph/rn-components";
+} from "@quyendev/rn-components";
 
 // ...
 const App = (second) => {

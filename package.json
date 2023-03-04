@@ -1,5 +1,5 @@
 {
-  "name": "@quyenph/rn-components",
+  "name": "@quyendev/rn-components",
   "version": "1.0.0",
   "description": "Customize some regular components from React-native basic-components",
   "main": "lib/commonjs/index",
