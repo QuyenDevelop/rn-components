@@ -4,18 +4,55 @@ Basic some regular compoents in usually using in proeject
 
 ## Installation
 
-```sh
+```
 npm install @quyenph/rn-components
+```
+hoặc
+
+```
+yarn add @quyenph/rn-components
 ```
 
 ## Usage
 
 ```js
-import { multiply } from '@quyenph/rn-components';
+// ---- using Tab Component ------
+import {
+  ITabView,
+  ITabBarItem,
+  ITabItemProps,
+  TabModel,
+} from "@quyenph/rn-components";
 
 // ...
+const App = (second) => {
+  const [index, setIndex] = React.useState < number > 0;
+  const routes: Array<TabModel> = [];
 
-const result = await multiply(3, 7);
+  const renderTabIcon = (props: ITabItemProps) => {
+    return <ITabBarItem {...props} />;
+  };
+
+  const renderScene = React.useCallback(({ tab }: { tab: TabModel }) => {
+    switch (tab.key) {
+      case "Button":
+        return <ButtonTab />;
+      default:
+        return <></>;
+    }
+  }, []);
+
+  return (
+    <ITabView
+      onIndexChange={setIndex}
+      renderScene={renderScene}
+      navigationState={{ index, routes }}
+      renderTabIcon={renderTabIcon} // ---- custom ItemTabbar
+      // disableSwipe       // ----- disable Swipe tab
+      isFixed // ----- styles Fixed tabbar
+    />
+  );
+};
 ```
 
 ## Contributing

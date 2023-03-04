@@ -4,19 +4,30 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --simulator='iPhone 12'",
     "start": "react-native start",
-    "pods": "pod-install --quiet"
+    "pods": "pod-install --quiet",
+    "storybook": "start-storybook -p 7007",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "react": "18.2.0",
     "react-native": "0.71.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "@babel/preset-env": "^7.20.0",
-    "@babel/runtime": "^7.20.0",
-    "metro-react-native-babel-preset": "0.73.7",
-    "babel-plugin-module-resolver": "^4.1.0"
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.14.0",
+    "@babel/runtime": "^7.12.5",
+    "@storybook/addon-actions": "^5.3",
+    "@storybook/addon-knobs": "^5.3",
+    "@storybook/addon-links": "^5.3",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.26",
+    "@storybook/react-native": "^5.3.27",
+    "@storybook/react-native-server": "^5.3.23",
+    "babel-loader": "^8.3.0",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "0.73.5",
+    "react-dom": "18.2.0"
   }
 }
