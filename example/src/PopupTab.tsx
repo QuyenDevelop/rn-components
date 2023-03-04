@@ -14,7 +14,7 @@ import {
   ITags,
   ITooltip,
   Themes,
-} from "rnc-components";
+} from "rn-core-components";
 
 export default function App() {
   const [buttonDisable, setButtonDisable] = React.useState<boolean>(false);

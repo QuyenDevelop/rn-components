@@ -1,5 +1,5 @@
 {
-  "name": "rnc-components",
+  "name": "rn-core-components",
   "version": "1.0.0",
   "description": "Customize some regular components from React-native basic-components",
   "main": "lib/commonjs/index",

@@ -1,24 +1,29 @@
-# rnc-components
+# rn-core-components
 
 Basic some regular compoents in usually using in proeject
 
 ## Installation
 
 ```
-npm install rnc-components
+npm install rn-core-components
 ```
 
 hoặc
 
 ```
-yarn add rnc-components
+yarn add rn-core-components
 ```
 
 ## Usage
 
 ```js
 // ---- using Tab Component ------
-import { ITabView, ITabBarItem, ITabItemProps, TabModel } from "rnc-components";
+import {
+  ITabView,
+  ITabBarItem,
+  ITabItemProps,
+  TabModel,
+} from "rn-core-components";
 
 // ...
 const App = (second) => {

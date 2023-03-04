@@ -1,7 +1,12 @@
 import { action } from "@storybook/addon-actions";
 import { select, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
-import { BaseHeaderBar, BaseSearch, HeaderTypes, Themes } from "rnc-components";
+import {
+  BaseHeaderBar,
+  BaseSearch,
+  HeaderTypes,
+  Themes,
+} from "rn-core-components";
 import { Text, TouchableOpacity } from "react-native";
 
 export const HeaderDefault: FunctionComponent = () => {

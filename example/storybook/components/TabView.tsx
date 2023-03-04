@@ -1,7 +1,12 @@
 import { boolean, object } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
 import { Text } from "react-native";
-import { ITabBarItem, ITabItemProps, ITabView, TabModel } from "rnc-components";
+import {
+  ITabBarItem,
+  ITabItemProps,
+  ITabView,
+  TabModel,
+} from "rn-core-components";
 import { FlexCenterView } from ".";
 
 export const TabViewPrimary: FunctionComponent = () => {

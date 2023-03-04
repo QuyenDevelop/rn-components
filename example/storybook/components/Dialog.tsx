@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { text } from "@storybook/addon-knobs";
 import React, { FunctionComponent, useState } from "react";
-import { BaseDialog, Button } from "rnc-components";
+import { BaseDialog, Button } from "rn-core-components";
 import { ContainerView } from ".";
 
 export const DialogPrimary: FunctionComponent = () => {
