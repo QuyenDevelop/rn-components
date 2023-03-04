@@ -8,7 +8,7 @@ import {
   ITabItemProps,
   ITabView,
   TabModel,
-} from "rn-core-components";
+} from "@phamquyen/rn-core-components";
 import BottomSheetTab from "./BottomSheet";
 import ButtonTab from "./ButtonTab";
 import EmptyStateTab from "./EmptyState";

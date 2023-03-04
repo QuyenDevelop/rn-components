@@ -1,17 +1,17 @@
-# rn-core-components
+# @phamquyen/rn-core-components
 
 Basic some regular compoents in usually using in proeject
 
 ## Installation
 
 ```
-npm install rn-core-components
+npm install @phamquyen/rn-core-components
 ```
 
 hoặc
 
 ```
-yarn add rn-core-components
+yarn add @phamquyen/rn-core-components
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ import {
   ITabBarItem,
   ITabItemProps,
   TabModel,
-} from "rn-core-components";
+} from "@phamquyen/rn-core-components";
 
 // ...
 const App = (second) => {

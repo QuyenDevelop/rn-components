@@ -1,6 +1,6 @@
 import { boolean, number } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
-import { ILineSkeleton, ISquareSkeleton } from "rn-core-components";
+import { ILineSkeleton, ISquareSkeleton } from "@phamquyen/rn-core-components";
 import { FlexCenterView } from ".";
 import { View } from "react-native";
 

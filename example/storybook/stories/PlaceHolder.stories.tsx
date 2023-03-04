@@ -1,7 +1,7 @@
 import { number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
-import { IPlaceHolder } from "rn-core-components";
+import { IPlaceHolder } from "@phamquyen/rn-core-components";
 import { ContainerView } from "../components";
 
 storiesOf("Place Holder", module)

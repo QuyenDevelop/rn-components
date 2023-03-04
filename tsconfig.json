@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "rn-core-components": ["./src/index"]
+      "@phamquyen/rn-core-components": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

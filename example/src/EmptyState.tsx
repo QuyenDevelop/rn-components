@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { StyleSheet, View } from "react-native";
-import { IEmptyState, BaseSnackBar } from "rn-core-components";
+import { IEmptyState, BaseSnackBar } from "@phamquyen/rn-core-components";
 
 export default function EmptyStateTab() {
   const [message, setMessage] = React.useState<string>("showSnackBar");

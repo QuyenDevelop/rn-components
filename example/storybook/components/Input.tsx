@@ -7,7 +7,7 @@ import {
   BaseTextInput,
   BaseTextArea,
   Themes,
-} from "rn-core-components";
+} from "@phamquyen/rn-core-components";
 import { FlexCenterView } from "./FlexCenterView";
 
 export const TextInputDefault: FunctionComponent = () => {

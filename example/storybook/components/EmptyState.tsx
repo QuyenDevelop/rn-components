@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { select, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
-import { IEmptyState, Themes } from "rn-core-components";
+import { IEmptyState, Themes } from "@phamquyen/rn-core-components";
 
 export const SheetEmptyPrimary: FunctionComponent = () => {
   return (
