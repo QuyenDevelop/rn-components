@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { number, select, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
-import { BaseSnackBar, SnackBarTypes } from "@quyendev/rn-components";
+import { BaseSnackBar, SnackBarTypes } from "rnc-components";
 import { ContainerView } from ".";
 
 export const SnackBarPrimary: FunctionComponent = () => {

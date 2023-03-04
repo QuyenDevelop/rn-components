@@ -1,6 +1,6 @@
 import { boolean, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
-import { ITags, ITooltip, IconButtonClear } from "@quyendev/rn-components";
+import { ITags, ITooltip, IconButtonClear } from "rnc-components";
 import { FlexCenterView } from ".";
 
 export const ITooltipAndTagPrimary: FunctionComponent = () => {

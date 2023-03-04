@@ -8,7 +8,7 @@ import {
   Button,
   ITags,
   Themes,
-} from "@quyendev/rn-components";
+} from "rnc-components";
 
 export default function BottomSheetTab() {
   const [showModal, setShowModal] = React.useState<boolean>(false);

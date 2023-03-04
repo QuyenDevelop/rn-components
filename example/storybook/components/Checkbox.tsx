@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { boolean, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
-import { ICheckBox, IRadioCheckBox } from "@quyendev/rn-components";
+import { ICheckBox, IRadioCheckBox } from "rnc-components";
 import { ContainerView } from ".";
 
 export const CheckboxDefault: FunctionComponent = () => {

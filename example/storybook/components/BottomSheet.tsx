@@ -1,7 +1,7 @@
 import { boolean, number, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { BaseBottomSheet, Button, Themes } from "@quyendev/rn-components";
+import { BaseBottomSheet, Button, Themes } from "rnc-components";
 import { ContainerView } from ".";
 
 const styles = StyleSheet.create({

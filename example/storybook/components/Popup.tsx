@@ -1,7 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { text } from "@storybook/addon-knobs";
 import React, { FunctionComponent, useState } from "react";
-import { BasePopup, Button } from "@quyendev/rn-components";
+import { BasePopup, Button } from "rnc-components";
 import { ContainerView } from ".";
 
 export const PopupPrimary: FunctionComponent = () => {

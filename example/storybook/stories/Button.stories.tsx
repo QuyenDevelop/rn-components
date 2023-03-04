@@ -1,12 +1,7 @@
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react-native";
 import React, { FunctionComponent, useState } from "react";
-import {
-  Button,
-  ButtonProps,
-  ButtonSizes,
-  ButtonTypes,
-} from "@quyendev/rn-components";
+import { Button, ButtonProps, ButtonSizes, ButtonTypes } from "rnc-components";
 import { boolean, number, select, text } from "@storybook/addon-knobs";
 // import { Text } from "react-native";
 import { ContainerView } from "../components";

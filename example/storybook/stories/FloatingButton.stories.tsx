@@ -1,7 +1,7 @@
 import { text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
-import { IFloatingButton } from "@quyendev/rn-components";
+import { IFloatingButton } from "rnc-components";
 import { ContainerView } from "../components";
 
 const List: Array<any> = [
