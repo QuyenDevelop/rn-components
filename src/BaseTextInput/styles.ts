@@ -53,7 +53,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    ...TextStyles.text16,
+    fontSize: 16,
     color: Color.black6s,
     marginRight: ConstantStyles.spacing8,
   },

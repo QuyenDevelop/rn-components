@@ -13,6 +13,7 @@ import {
 import Modal from "react-native-modal";
 import { Images } from "../assets";
 import { Color, ConstantStyles, ScreenUtils, TextStyles } from "../Themes";
+import { IComponentDIM } from "../Components";
 
 export interface BottomSheetProps {
   isVisible: boolean;
@@ -64,6 +65,12 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
     { ...styles.contentContainer, height: height },
     containerStyle,
   ];
+  const onBackdropPress = () => {
+    disableBackdrop ? undefined : onCloseModal?.();
+  };
+  const onSwipeComplete = () => {
+    disableSwipeComplete ? undefined : onCloseModal?.();
+  };
   return (
     <Modal
       useNativeDriver
@@ -71,10 +78,10 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
       statusBarTranslucent
       propagateSwipe={true}
       hardwareAccelerated={false}
-      onBackdropPress={disableBackdrop ? undefined : onCloseModal}
+      onBackdropPress={onBackdropPress}
       onBackButtonPress={onCloseModal}
-      onSwipeComplete={disableSwipeComplete ? undefined : onCloseModal}
-      backdropColor={Color.black5}
+      onSwipeComplete={onSwipeComplete}
+      customBackdrop={<IComponentDIM onPress={onCloseModal} />}
       onModalHide={onCloseModal}
       swipeDirection="down"
       style={styles.modalContainer}
@@ -82,6 +89,7 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
       backdropOpacity={backdropOpacity || 0.5}
       hideModalContentWhileAnimating={true}
       backdropTransitionOutTiming={0}
+      deviceHeight={ScreenUtils.HEIGHT_SCREEN}
     >
       <KeyboardAvoidingView behavior="position" enabled>
         <View style={{ maxHeight: MAX_HEIGHT, height: height }}>

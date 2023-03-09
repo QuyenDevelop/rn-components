@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
-import { styles } from "./styles";
-import { IconButton } from "../Button";
-import { Color, ConstantStyles } from "../Themes";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
+import { IconButton } from "../Button";
+import { ConstantStyles, ScreenUtils } from "../Themes";
 import { Support } from "./FloatingButton";
+import { styles } from "./styles";
+import { IComponentDIM } from "../Components";
 
 interface ContentModal {
   ListSupport: Array<Support>;
@@ -27,13 +28,14 @@ export const ContentModal: FunctionComponent<ContentModal> = ({
       propagateSwipe={true}
       hardwareAccelerated={false}
       onBackButtonPress={onCloseContent}
-      backdropColor={Color.black5}
+      customBackdrop={<IComponentDIM onPress={onCloseContent} />}
       onModalHide={onCloseContent}
       style={styles.modalContainer}
       isVisible={isShowContent}
       animationOut={"fadeOut"}
       animationIn={"fadeIn"}
       hideModalContentWhileAnimating={true}
+      deviceHeight={ScreenUtils.HEIGHT_SCREEN}
     >
       <View style={styles.overView}>
         {ListSupport.map((item: Support, index: number) => (

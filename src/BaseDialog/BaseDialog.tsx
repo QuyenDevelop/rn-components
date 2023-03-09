@@ -3,8 +3,14 @@ import type { ViewStyle } from "react-native";
 import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { Button, ButtonTypes } from "../Button";
-import { ISpacingHorizontal } from "../Components";
-import { Color, ConstantStyles, ShadowStyles, TextStyles } from "../Themes";
+import { IComponentDIM, ISpacingHorizontal } from "../Components";
+import {
+  Color,
+  ConstantStyles,
+  ScreenUtils,
+  ShadowStyles,
+  TextStyles,
+} from "../Themes";
 
 /*
   Why use bottom sheet:
@@ -62,6 +68,12 @@ export const BaseDialog: FunctionComponent<DialogProps> = ({
   buttonAcceptName,
   onPressAccept,
 }) => {
+  const onBackdropPress = () => {
+    disableBackdrop ? undefined : onClose?.();
+  };
+  const onSwipeComplete = () => {
+    disableSwipeComplete ? undefined : onClose?.();
+  };
   return (
     <Modal
       useNativeDriver
@@ -69,10 +81,10 @@ export const BaseDialog: FunctionComponent<DialogProps> = ({
       statusBarTranslucent
       propagateSwipe={true}
       hardwareAccelerated={false}
-      onBackdropPress={disableBackdrop ? undefined : onClose}
+      onBackdropPress={onBackdropPress}
       onBackButtonPress={onClose}
-      onSwipeComplete={disableSwipeComplete ? undefined : onClose}
-      backdropColor={Color.black5}
+      onSwipeComplete={onSwipeComplete}
+      customBackdrop={<IComponentDIM onPress={onBackdropPress} />}
       onModalHide={onClose}
       style={styles.modalContainer}
       isVisible={isVisible}
@@ -80,6 +92,7 @@ export const BaseDialog: FunctionComponent<DialogProps> = ({
       animationIn={"fadeIn"}
       backdropOpacity={backdropOpacity || 0.5}
       hideModalContentWhileAnimating={true}
+      deviceHeight={ScreenUtils.HEIGHT_SCREEN}
     >
       <KeyboardAvoidingView behavior="position" enabled>
         <View style={[styles.contentContainer, containerStyle]}>

@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { IconButtonClear, IconColor } from "../Button";
-import { Color, ScreenUtils, ConstantStyles, TextStyles } from "../Themes";
+import { Color, ScreenUtils, ConstantStyles } from "../Themes";
 import { Images } from "../assets";
 
 export interface SearchProps extends TextInputProps {
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    ...TextStyles.text14,
+    fontSize: 14,
     fontWeight: "400",
     color: Color.black6s,
     height: ScreenUtils.scale(36),

@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { Button, ButtonTypes, IconButton } from "../Button";
-import { ISpacingHorizontal } from "../Components";
-import { Color, ConstantStyles, ScreenUtils } from "../Themes";
+import { IComponentDIM, ISpacingHorizontal } from "../Components";
+import { ConstantStyles, ScreenUtils } from "../Themes";
 import { styles } from "./styles";
 
 export interface PopupProps {
@@ -56,7 +56,6 @@ export const BasePopup: FunctionComponent<PopupProps> = ({
   message,
   disableBackdrop = false,
   disableSwipeComplete = false,
-  backdropOpacity,
   buttonCancelName,
   onPressCancel,
   buttonAcceptName,
@@ -64,6 +63,12 @@ export const BasePopup: FunctionComponent<PopupProps> = ({
   image,
   imageBackground,
 }) => {
+  const onBackdropPress = () => {
+    disableBackdrop ? undefined : onClose?.();
+  };
+  const onSwipeComplete = () => {
+    disableSwipeComplete ? undefined : onClose?.();
+  };
   return (
     <Modal
       useNativeDriver
@@ -71,17 +76,17 @@ export const BasePopup: FunctionComponent<PopupProps> = ({
       statusBarTranslucent
       propagateSwipe={true}
       hardwareAccelerated={false}
-      onBackdropPress={disableBackdrop ? undefined : onClose}
+      onBackdropPress={onBackdropPress}
       onBackButtonPress={onClose}
-      onSwipeComplete={disableSwipeComplete ? undefined : onClose}
-      backdropColor={Color.black5}
+      onSwipeComplete={onSwipeComplete}
       onModalHide={onClose}
       style={styles.modalContainer}
+      customBackdrop={<IComponentDIM onPress={onBackdropPress} />}
       isVisible={isVisible}
       animationOut={"fadeOut"}
       animationIn={"fadeIn"}
-      backdropOpacity={backdropOpacity || 0.5}
       hideModalContentWhileAnimating={true}
+      deviceHeight={ScreenUtils.HEIGHT_SCREEN}
     >
       <KeyboardAvoidingView behavior="position" enabled>
         <View style={[styles.contentContainer, containerStyle]}>
