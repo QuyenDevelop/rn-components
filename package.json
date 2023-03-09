@@ -1,6 +1,6 @@
 {
   "name": "@phamquyen/rn-core-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Customize some regular components from React-native basic-components",
   "main": "lib/commonjs/index",
   "types": "lib/typescript/index.d.ts",
