@@ -1,7 +1,7 @@
 import { text } from "@storybook/addon-knobs";
 import React, { FunctionComponent } from "react";
 import { BaseSearch } from "@phamquyen/rn-core-components";
-import { ContainerView } from ".";
+import { ContainerView } from "./ContainerView";
 
 export const SearchBarDefault: FunctionComponent = () => {
   return (

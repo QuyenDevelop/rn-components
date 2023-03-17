@@ -1,8 +1,13 @@
 import { boolean, number, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { BaseBottomSheet, Button, Themes } from "@phamquyen/rn-core-components";
-import { ContainerView } from ".";
+import {
+  BaseBottomSheet,
+  Button,
+  ButtonVariants,
+  Themes,
+} from "@phamquyen/rn-core-components";
+import { ContainerView } from "./ContainerView";
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -29,7 +34,12 @@ export const BottomSheetPrimary: FunctionComponent = () => {
         isVisible={show}
         onCloseModal={() => setShow(false)}
         headerTitle={text("Header Title", "Title viết 1 dòng thôi nhé")}
-        headerRightView={<Text>{text("Right Content", "sửa")}</Text>}
+        headerRightView={
+          <Button
+            variant={ButtonVariants.TEXT_LINK}
+            name={text("Header Right Content", "sửa")}
+          />
+        }
         disableBackdrop={boolean("hide when Backdrop", false)}
         height={number("Max of Height", 500)}
         // isSwipeComplete

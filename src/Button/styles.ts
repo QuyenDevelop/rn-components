@@ -2,6 +2,10 @@ import { StyleSheet } from "react-native";
 import { Color, ConstantStyles } from "../Themes";
 
 export const styles = StyleSheet.create({
+  childrenContentStyle: {
+    flex: 1,
+    marginHorizontal: ConstantStyles.spacing4,
+  },
   disableStyle: {
     flex: 1,
     alignItems: "center",
@@ -15,19 +19,21 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
-    borderRadius: ConstantStyles.borderRadius8,
   },
   contentStyle: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
+    width: "100%",
+    height: "100%",
+    borderRadius: ConstantStyles.borderRadius8,
   },
   ButtonLeftStyles: {
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
-    marginHorizontal: ConstantStyles.spacing8,
+    marginHorizontal: ConstantStyles.spacing4,
   },
   textStyle: {
     textAlign: "center",
@@ -42,5 +48,15 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     color: Color.white6,
+  },
+  overflowHidden: {
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  flexRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

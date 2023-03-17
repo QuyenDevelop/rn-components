@@ -1,8 +1,15 @@
 import React, { FunctionComponent } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { IconButtonClear, IconColor } from "../Button";
-import { Color, ScreenUtils } from "../Themes";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
+import { Color, ConstantStyles, ScreenUtils } from "../Themes";
+import { Images } from "../assets";
 import { styles } from "./styles";
+import { TouchableOpacity } from "react-native";
 
 export interface ITagsProps {
   width?: number;
@@ -10,6 +17,7 @@ export interface ITagsProps {
   onSelectedTag?: () => void;
   isShowClose?: boolean;
   leftIcon?: React.ReactNode;
+  showLeftIcon?: boolean;
   tagName?: string;
   /** set Font for Text */
   fontFamily?: string;
@@ -21,6 +29,7 @@ export const ITags: FunctionComponent<ITagsProps> = ({
   onSelectedTag,
   isShowClose,
   leftIcon,
+  showLeftIcon = true,
   tagName,
   fontFamily,
   width,
@@ -30,34 +39,50 @@ export const ITags: FunctionComponent<ITagsProps> = ({
     width: width,
     maxWidth: ScreenUtils.WIDTH_SCREEN,
     backgroundColor: isSelected ? Color.black6s : Color.white6,
-    borderWidth: 2 * StyleSheet.hairlineWidth,
-    borderColor: isSelected ? Color.black6s : Color.black3s,
+    borderWidth: isSelected ? 0 : 2 * StyleSheet.hairlineWidth,
+    borderColor: Color.black1s,
   };
 
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       style={{ ...styles.container, ...selectStyle }}
       onPress={onSelectedTag}
+      underlayColor={Color.black1}
+      activeOpacity={0.08}
     >
-      {leftIcon && <View style={styles.leftIconStyle}>{leftIcon}</View>}
-      {tagName && (
-        <Text
-          style={{
-            ...styles.tagsNameStyle,
-            maxWidth: width,
-            fontFamily: fontFamily,
-            color: isSelected ? Color.white6 : Color.black6s,
-          }}
-          numberOfLines={1}
-        >
-          {tagName}
-        </Text>
-      )}
-      {isShowClose && onCloseTag && (
-        <TouchableOpacity style={styles.rightIconStyle} onPress={onCloseTag}>
-          <IconButtonClear onPress={onCloseTag} iconColor={IconColor.DARK} />
-        </TouchableOpacity>
-      )}
-    </TouchableOpacity>
+      <>
+        {leftIcon && showLeftIcon && (
+          <View style={styles.leftIconStyle}>{leftIcon}</View>
+        )}
+        {tagName && (
+          <Text
+            style={{
+              ...styles.tagsNameStyle,
+              maxWidth: width,
+              fontFamily: fontFamily,
+              color: isSelected ? Color.white6 : Color.black6s,
+            }}
+            numberOfLines={1}
+          >
+            {tagName}
+          </Text>
+        )}
+        {isShowClose && onCloseTag && (
+          <TouchableOpacity
+            onPress={onCloseTag}
+            style={{
+              ...styles.overflowHidden,
+              width: ConstantStyles.iconSizeSmall,
+              height: ConstantStyles.iconSizeSmall,
+              borderRadius: ConstantStyles.iconSizeSmall / 2,
+              backgroundColor: Color.black2s,
+              marginLeft: ConstantStyles.spacing4,
+            }}
+          >
+            <Image source={Images.icCloseDark2} resizeMode="center" />
+          </TouchableOpacity>
+        )}
+      </>
+    </TouchableHighlight>
   );
 };

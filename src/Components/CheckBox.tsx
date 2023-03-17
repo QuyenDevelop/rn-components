@@ -1,7 +1,14 @@
 import React, { FunctionComponent } from "react";
-import { StyleSheet, View, TouchableOpacity, Text, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableHighlight,
+  Text,
+  Image,
+} from "react-native";
 import { Color, ScreenUtils, ConstantStyles, TextStyles } from "../Themes";
 import { Images } from "../assets";
+import { TouchableOpacity } from "react-native";
 
 export interface CheckBoxProps {
   size?: number;
@@ -14,7 +21,7 @@ export interface CheckBoxProps {
   handleCheck?: () => void;
 }
 
-export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
+export const IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
   size = ConstantStyles.iconSizeMedium,
   isChecked,
   isDisabled,
@@ -26,34 +33,40 @@ export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
 
   return (
     <TouchableOpacity
-      style={styles.container}
       onPress={!isDisabled ? handleCheck : undefined}
+      style={styles.container}
     >
-      <View
-        style={{
-          ...styles.checkBoxStyle,
-          width: size,
-          height: size,
-          borderColor: getColor,
-        }}
+      <TouchableHighlight
+        onPress={!isDisabled ? handleCheck : undefined}
+        style={styles.touchContainer}
+        underlayColor={Color.black1}
       >
-        {isChecked && (
-          <View
-            style={{
-              width: size / 2,
-              height: size / 2,
-              borderRadius: size / 4,
-              backgroundColor: getColor,
-            }}
-          />
-        )}
-      </View>
+        <View
+          style={{
+            ...styles.checkBoxStyle,
+            width: size,
+            height: size,
+            borderColor: getColor,
+          }}
+        >
+          {isChecked && (
+            <View
+              style={{
+                width: size / 2,
+                height: size / 2,
+                borderRadius: size / 4,
+                backgroundColor: getColor,
+              }}
+            />
+          )}
+        </View>
+      </TouchableHighlight>
       {content && (
         <Text
           style={{
             ...TextStyles.text14,
             fontFamily: fontFamily,
-            color: isDisabled ? Color.black3s : Color.black6s,
+            color: isDisabled ? Color.black5s : Color.black6s,
           }}
         >
           {content}
@@ -63,7 +76,7 @@ export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
   );
 };
 
-export const IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
+export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
   size = ConstantStyles.iconSizeMedium,
   isChecked,
   isDisabled,
@@ -75,40 +88,46 @@ export const IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
 
   return (
     <TouchableOpacity
-      style={styles.container}
       onPress={!isDisabled ? handleCheck : undefined}
+      style={styles.container}
     >
-      <View
-        style={{
-          ...styles.radioContainer,
-          width: size,
-          height: size,
-          borderColor: getColor,
-          backgroundColor:
-            isDisabled && isChecked
-              ? Color.black3s
-              : isChecked
-              ? Color.primary6s
-              : Color.white6,
-        }}
+      <TouchableHighlight
+        onPress={!isDisabled ? handleCheck : undefined}
+        underlayColor={Color.black1}
+        style={styles.touchContainer}
       >
-        {isChecked ? (
-          customIconRadioCheck ? (
-            customIconRadioCheck
-          ) : (
-            <Image
-              source={Images.icCheck}
-              style={styles.iconCloseStyle}
-              resizeMode="contain"
-            />
-          )
-        ) : null}
-      </View>
+        <View
+          style={{
+            ...styles.radioContainer,
+            width: size,
+            height: size,
+            borderColor: getColor,
+            backgroundColor:
+              isDisabled && isChecked
+                ? Color.black3s
+                : isChecked
+                ? Color.primary6s
+                : Color.white6,
+          }}
+        >
+          {isChecked ? (
+            customIconRadioCheck ? (
+              customIconRadioCheck
+            ) : (
+              <Image
+                source={Images.icCheck}
+                style={styles.iconCloseStyle}
+                resizeMode="contain"
+              />
+            )
+          ) : null}
+        </View>
+      </TouchableHighlight>
       {content && (
         <Text
           style={{
             ...TextStyles.text14,
-            color: isDisabled ? Color.black3s : Color.black6s,
+            color: isDisabled ? Color.black5s : Color.black6s,
           }}
         >
           {content}
@@ -123,11 +142,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  touchContainer: {
+    width: ScreenUtils.scale(36),
+    height: ScreenUtils.scale(36),
+    borderRadius: ScreenUtils.scale(18),
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Color.white6,
+  },
   checkBoxStyle: {
     borderRadius: ConstantStyles.borderRadius16,
     justifyContent: "center",
     alignItems: "center",
-    marginRight: ConstantStyles.spacing8,
     borderWidth: 2 * StyleSheet.hairlineWidth,
   },
   radioContainer: {

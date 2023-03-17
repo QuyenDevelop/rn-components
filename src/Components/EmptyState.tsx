@@ -48,14 +48,14 @@ export const IEmptyState: FunctionComponent<EmptyStateProps> = ({
         >
           {message}
         </Text>
-        {buttonTitle && buttonHandler && (
-          <Button
-            width={ScreenUtils.scale(248)}
-            name={buttonTitle}
-            onPress={buttonHandler}
-          />
-        )}
       </View>
+      {buttonTitle && buttonHandler && (
+        <Button
+          width={ScreenUtils.scale(248)}
+          name={buttonTitle}
+          onPress={buttonHandler}
+        />
+      )}
     </View>
   );
 };
@@ -66,17 +66,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: ConstantStyles.spacing16,
+    paddingVertical: ConstantStyles.spacing24,
   },
   imageStyle: {
-    width: ScreenUtils.scale(200),
-    height: ScreenUtils.scale(200),
+    width: ScreenUtils.scale(168),
+    height: ScreenUtils.scale(168),
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
   },
   emptyContentStyle: {
-    marginTop: ConstantStyles.spacing40,
-    marginBottom: ConstantStyles.spacing8,
+    paddingVertical: ConstantStyles.spacing16,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -85,11 +85,12 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginBottom: ConstantStyles.spacing8,
     textAlign: "center",
+    color: Color.black6s,
   },
   messageStyle: {
     ...TextStyles.text14,
     fontWeight: "400",
-    marginBottom: ConstantStyles.spacing24,
     textAlign: "center",
+    color: Color.black5s,
   },
 });

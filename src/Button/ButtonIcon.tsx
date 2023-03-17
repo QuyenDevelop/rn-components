@@ -1,52 +1,44 @@
 import * as React from "react";
-import { Image, TouchableOpacity } from "react-native";
+import { Image, TouchableHighlight } from "react-native";
 import { Color, ConstantStyles } from "../Themes";
 import { Images } from "../assets/Images";
 import { ButtonProps, IconColor } from "./types";
+import { styles } from "./styles";
 
 export const IconButton: React.FunctionComponent<ButtonProps> = ({
   children,
   onPress,
   width = ConstantStyles.iconSizeLarge,
-  iconColor = IconColor.LIGHT,
 }) => {
-  // const iconSize =
-  //   width > ConstantStyles.iconSizeLarge
-  //     ? ConstantStyles.iconSizeMedium
-  //     : ConstantStyles.iconSizeSmall;
-
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       onPress={onPress}
-      // eslint-disable-next-line react-native/no-inline-styles
       style={{
+        ...styles.overflowHidden,
         width: width,
         height: width,
-        alignItems: "center",
-        justifyContent: "center",
         borderRadius: width / 2,
         backgroundColor: Color.black3,
-        overflow: "hidden",
       }}
+      underlayColor={Color.black1}
+      activeOpacity={0.92}
     >
-      {children || (
-        <Image
-          source={
-            iconColor === IconColor.LIGHT ? Images.icCloseWhite : Images.icClose
-          }
-          resizeMode="center"
-        />
-      )}
-    </TouchableOpacity>
+      {children}
+    </TouchableHighlight>
   );
 };
 
-export const IconButtonClear: React.FunctionComponent<ButtonProps> = ({
+interface iconClearProps extends ButtonProps {
+  size?: number;
+}
+
+export const IconButtonClear: React.FC<iconClearProps> = ({
   onPress,
   iconColor = IconColor.LIGHT,
+  size = ConstantStyles.iconSizeSmall,
 }) => {
   return (
-    <IconButton width={ConstantStyles.iconSizeSmall} onPress={onPress}>
+    <IconButton width={size} onPress={onPress}>
       <Image
         source={
           iconColor === IconColor.LIGHT

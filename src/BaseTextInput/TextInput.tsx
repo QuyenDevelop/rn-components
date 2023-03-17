@@ -7,9 +7,10 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { IconButtonClear } from "../Button";
+import { IconButtonClear, IconColor } from "../Button";
 import { Color, ConstantStyles, ScreenUtils } from "../Themes";
 import { styles } from "./styles";
+import { StyleSheet } from "react-native";
 
 export declare interface ITextInputProps extends TextInputProps {
   label?: string;
@@ -24,6 +25,8 @@ export declare interface ITextInputProps extends TextInputProps {
   isFocus?: boolean;
   textRightComponent?: React.ReactNode;
   textLeftComponent?: React.ReactNode;
+  showTextRightComponent?: boolean;
+  showTextLeftComponent?: boolean;
   /** set Font for Text */
   fontFamily?: string;
 }
@@ -47,6 +50,8 @@ export const BaseTextInput: FunctionComponent<ITextInputProps> = ({
   editable = true,
   isFocus,
   fontFamily,
+  showTextRightComponent = true,
+  showTextLeftComponent = true,
   ...props
 }) => {
   const [focus, setFocus] = useState<boolean>(false);
@@ -87,7 +92,9 @@ export const BaseTextInput: FunctionComponent<ITextInputProps> = ({
           editable ? [getInputStyle, inputStyle] : styles.inputDisableContainer
         }
       >
-        {textLeftComponent}
+        {textLeftComponent && showTextLeftComponent && (
+          <View>{textLeftComponent}</View>
+        )}
         <Input
           ref={inputRef}
           allowFontScaling={false}
@@ -100,6 +107,10 @@ export const BaseTextInput: FunctionComponent<ITextInputProps> = ({
           placeholderTextColor={Color.black4s}
           style={{
             ...styles.input,
+            marginLeft:
+              textLeftComponent && showTextLeftComponent
+                ? ConstantStyles.spacing8
+                : undefined,
             height: height || ScreenUtils.scale(40),
             fontFamily: fontFamily,
           }}
@@ -108,10 +119,35 @@ export const BaseTextInput: FunctionComponent<ITextInputProps> = ({
           multiline={false}
           {...props}
         />
-        {value && editable && !isHideClear && (
-          <IconButtonClear onPress={onClearInput} />
+        {focus && value && editable && !isHideClear && (
+          <View
+            style={{
+              paddingRight:
+                textRightComponent && showTextRightComponent
+                  ? ScreenUtils.scale(8)
+                  : undefined,
+            }}
+          >
+            <IconButtonClear
+              onPress={onClearInput}
+              iconColor={IconColor.DARK}
+            />
+          </View>
         )}
-        {textRightComponent}
+        {textRightComponent && showTextRightComponent && (
+          <View
+            style={{
+              paddingLeft: ScreenUtils.scale(8),
+              borderLeftWidth:
+                focus && value && editable && !isHideClear
+                  ? 2 * StyleSheet.hairlineWidth
+                  : undefined,
+              borderLeftColor: Color.black1s,
+            }}
+          >
+            {textRightComponent}
+          </View>
+        )}
       </View>
       {errorMessage ? (
         editable && (

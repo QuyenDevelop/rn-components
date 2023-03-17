@@ -1,13 +1,15 @@
+import {
+  BaseBottomSheet,
+  BaseTextArea,
+  BaseTextInput,
+  Button,
+  ButtonVariants,
+  Themes,
+} from "@phamquyen/rn-core-components";
 import { action } from "@storybook/addon-actions";
 import { boolean, number, text } from "@storybook/addon-knobs";
 import React, { FunctionComponent, useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import {
-  BaseBottomSheet,
-  BaseTextInput,
-  BaseTextArea,
-  Themes,
-} from "@phamquyen/rn-core-components";
+import { StyleSheet, Text, View } from "react-native";
 import { FlexCenterView } from "./FlexCenterView";
 
 export const TextInputDefault: FunctionComponent = () => {
@@ -22,6 +24,8 @@ export const TextInputDefault: FunctionComponent = () => {
       errorMessage={text("Error when input wrong value", "")}
       placeholder={text("Hint Text", "Placeholder...")}
       noteMessage={text("Note description", "")}
+      showTextRightComponent={boolean("Show/hide icon right component", true)}
+      textRightComponent={<Text>{text("Icon", "💯")}</Text>}
     />
   );
 };
@@ -64,17 +68,19 @@ export const TextDropdown: FunctionComponent = () => {
         label={text("Label", "Text Dropdown List")}
         value={text("Input Value", "Nhập nội dung ở đây")}
         onChangeText={() => {}}
-        onClearInput={action("Clear Text")}
+        isHideClear
+        showTextLeftComponent={boolean("Show/hide Icon Left", true)}
+        textLeftComponent={<Text>{text("Icon Left test", "💯")}</Text>}
         errorMessage={text("Error when input wrong value", "")}
         placeholder={text("Hint Text", "Placeholder...")}
         noteMessage={text("Note description", "")}
+        showTextRightComponent={boolean("Show/hide Icon Right", true)}
         textRightComponent={
-          <TouchableOpacity
-            style={styles.touchRight}
+          <Button
             onPress={() => setShow(true)}
-          >
-            <Text>List</Text>
-          </TouchableOpacity>
+            variant={ButtonVariants.TEXT_LINK}
+            name={text("Input Right Name", "sửa")}
+          />
         }
       />
       <BaseBottomSheet

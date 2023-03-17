@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 import Modal from "react-native-modal";
-import { Button, ButtonTypes, IconButton } from "../Button";
+import { Button, ButtonTypes, IconButtonClear } from "../Button";
 import { IComponentDIM, ISpacingHorizontal } from "../Components";
 import { ConstantStyles, ScreenUtils } from "../Themes";
 import { styles } from "./styles";
@@ -97,7 +97,10 @@ export const BasePopup: FunctionComponent<PopupProps> = ({
               style={styles.imageBackground}
             >
               <View style={styles.icCloseButton}>
-                <IconButton onPress={onClose} />
+                <IconButtonClear
+                  size={ConstantStyles.iconSizeLarge}
+                  onPress={onClose}
+                />
               </View>
               <View style={styles.imageBackgroundAction}>
                 {buttonCancelName && (
@@ -122,7 +125,10 @@ export const BasePopup: FunctionComponent<PopupProps> = ({
           ) : (
             <>
               <View style={styles.icCloseButton}>
-                <IconButton onPress={onClose} />
+                <IconButtonClear
+                  size={ConstantStyles.iconSizeLarge}
+                  onPress={onClose}
+                />
               </View>
               {image && (
                 <Image

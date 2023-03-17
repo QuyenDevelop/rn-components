@@ -1,62 +1,55 @@
-import { action } from "@storybook/addon-actions";
-import { storiesOf } from "@storybook/react-native";
-import React, { FunctionComponent, useState } from "react";
 import {
   Button,
-  ButtonProps,
   ButtonSizes,
   ButtonTypes,
+  ButtonVariants,
 } from "@phamquyen/rn-core-components";
+import { action } from "@storybook/addon-actions";
 import { boolean, number, select, text } from "@storybook/addon-knobs";
+import { storiesOf } from "@storybook/react-native";
+import React from "react";
 // import { Text } from "react-native";
+import { ActivityIndicator, Text } from "react-native";
+import { CThemes } from "../../global";
 import { ContainerView } from "../components";
-
-const ButtonLoading: FunctionComponent<ButtonProps> = (props) => {
-  const [isLoading, setLoading] = useState(false);
-
-  const onPress = () => {
-    props.onPress || setLoading(true);
-  };
-  return (
-    <Button
-      isLoading={isLoading}
-      onPress={onPress}
-      isDisabled={isLoading}
-      {...props}
-    />
-  );
-};
 
 storiesOf("Button", module)
   .addDecorator((getStory) => <ContainerView>{getStory()}</ContainerView>)
   .add("Button", () => {
-    return <ButtonLoading name={text("Button Name", "Button")} />;
+    return (
+      <Button
+        isLoading={boolean("Loading", false)}
+        isDisabled={boolean("Disabled", false)}
+        name={text("Button Name", "Customizes")}
+        onPress={action("clicked-emoji")}
+        buttonStyle={select(
+          "Button style",
+          ButtonTypes,
+          ButtonTypes.SECONDARY_ONE
+        )}
+        renderLoading={<ActivityIndicator />}
+        width={number("Button Width", 0)}
+        fontFamily={CThemes.fonts.medium}
+        buttonSize={select("Button Size", ButtonSizes, ButtonSizes.MEDIUM)}
+        buttonLeftView={<Text>{text("icon Left", "😎")}</Text>}
+        buttonRightView={<Text>{text("icon Right", "💯")}</Text>}
+      />
+    );
   })
-  .add("Button change style", () => (
+  .add("Icon Button", () => (
+    <Button variant={ButtonVariants.ICON} onPress={action("Icon CLick")}>
+      <Text>{text("Icon", "X")}</Text>
+    </Button>
+  ))
+  .add("Text Link Button", () => (
     <Button
+      variant={ButtonVariants.TEXT_LINK}
       isLoading={boolean("Loading", false)}
       isDisabled={boolean("Disabled", false)}
       name={text("Button Name", "Customizes")}
-      onPress={action("clicked-emoji")}
-      buttonStyle={select(
-        "Button style",
-        ButtonTypes,
-        ButtonTypes.SECONDARY_ONE
-      )}
-      buttonSize={select("Button Size", ButtonSizes, ButtonSizes.MEDIUM)}
+      onPress={action("clicked")}
+      renderLoading={<ActivityIndicator />}
+      buttonLeftView={<Text>{text("icon Left", "😎")}</Text>}
+      buttonRightView={<Text>{text("icon Right", "👍")}</Text>}
     />
-  ))
-  .add("Button change With", () => (
-    <Button
-      isLoading={boolean("Loading", false)}
-      isDisabled={boolean("Disabled", false)}
-      buttonStyle={select("Button style", ButtonTypes, ButtonTypes.PRIMARY)}
-      width={number("Custom Width", 100)}
-      buttonSize={select("Button Size", ButtonSizes, ButtonSizes.MEDIUM)}
-      name={text("Button Name", "😀")}
-    >
-      {/* <Text>{text("Children Content", "👍")}</Text> */}
-    </Button>
   ));
-
-// 😀 😎 👍 💯

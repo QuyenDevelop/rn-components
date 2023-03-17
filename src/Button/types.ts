@@ -26,16 +26,28 @@ export enum IconColor {
   LIGHT = "LIGHT",
   DARK = "DARK",
 }
+export declare type ButtonVariant = "BUTTON" | "ICON" | "TEXT_LINK";
+export enum ButtonVariants {
+  BUTTON = "BUTTON",
+  ICON = "ICON",
+  TEXT_LINK = "TEXT_LINK",
+}
 
 export interface ButtonProps extends TouchableOpacityProps {
   /** Button Styles ("PRIMARY" | "SECONDARY_ONE" | "SECONDARY_TWO") */
   buttonStyle?: ButtonStyle;
+  /** Button Styles ("PRIMARY" | "SECONDARY_ONE" | "SECONDARY_TWO") */
+  fontFamily?: string;
   /** Button Size ("SMALL" | "SMALL_SPECIAL" | "MEDIUM" | "LARGE") */
   buttonSize?: ButtonSize;
+  /** Button Size ("BUTTON" | "ICON" | "TEXT_LINK") */
+  variant?: ButtonVariant;
   /** Button customize width */
   width?: number;
   /** Button loading */
   isLoading?: boolean;
+  /** Button loading */
+  renderLoading?: React.ReactNode;
   /** Button disable */
   isDisabled?: boolean;
   /** Button name */

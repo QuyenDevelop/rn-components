@@ -15,7 +15,6 @@ export const IBadge: FunctionComponent<BadgeProps> = ({
   return (
     <View
       style={{
-        width: size,
         height: size,
         backgroundColor: color,
         borderRadius: cornerRadius,
@@ -35,7 +34,7 @@ export const IBadge: FunctionComponent<BadgeProps> = ({
           numberOfLines={1}
           adjustsFontSizeToFit
         >
-          {Number(content) <= 99 ? content.toString() : "99+"}
+          {Number(content) <= 99 ? content.toString() : "+99"}
         </Text>
       )}
     </View>

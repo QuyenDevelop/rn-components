@@ -7,7 +7,7 @@ import {
   ITabView,
   TabModel,
 } from "@phamquyen/rn-core-components";
-import { FlexCenterView } from ".";
+import { FlexCenterView } from "./FlexCenterView";
 
 export const TabViewPrimary: FunctionComponent = () => {
   const [index, setIndex] = React.useState<number>(0);

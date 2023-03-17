@@ -35,6 +35,8 @@ export interface SnackBarProperties {
   visible?: boolean;
   /** snack bar timing */
   duration?: number;
+  /** snack bar show icon */
+  showIcon?: boolean;
   /** snack bar customize icon */
   snackBarIcon?: React.ReactNode;
   /** snack bar button name */
@@ -58,6 +60,7 @@ export const BaseSnackBar = React.forwardRef<SnackRef, SnackBarProps>(
       buttonName,
       snackBarAction,
       fontFamily,
+      showIcon = true,
       ...props
     },
     SnackRef
@@ -114,7 +117,7 @@ export const BaseSnackBar = React.forwardRef<SnackRef, SnackBarProps>(
           onPress={snackBarAction || undefined}
         >
           <View style={styles.flexRow}>
-            {snackBarIcon && (
+            {snackBarIcon && showIcon && (
               <View style={styles.iconView}>{snackBarIcon}</View>
             )}
             <Text

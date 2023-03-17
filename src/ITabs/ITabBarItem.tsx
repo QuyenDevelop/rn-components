@@ -1,6 +1,6 @@
 import { Text } from "@rneui/themed";
 import React, { FunctionComponent } from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableHighlight, View } from "react-native";
 import type { TabModel } from ".";
 import { IBadge, IDot } from "../Components";
 import { Color, ScreenUtils, ConstantStyles, TextStyles } from "../Themes";
@@ -11,6 +11,7 @@ export interface ITabItemProps {
   isFocused: boolean;
   onChangeTab: (index: number) => void;
   renderTabIcon?: React.ReactNode;
+  showItemTabIcon?: boolean;
   isShowRedDot?: boolean;
   isShowBadge?: boolean;
   itemWidth?: number;
@@ -24,49 +25,62 @@ export const ITabBarItem: FunctionComponent<ITabItemProps> = ({
   isFocused,
   onChangeTab,
   renderTabIcon,
+  showItemTabIcon = true,
   itemWidth,
   isShowRedDot,
   isShowBadge,
   fontFamily,
 }) => {
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       onPress={() => onChangeTab(index)}
       style={styles.container}
+      underlayColor={Color.black1s}
     >
-      <View
-        style={{
-          ...styles.tabContainer,
-          width: itemWidth,
-        }}
-      >
-        {renderTabIcon && <View style={styles.tabIcon}>{renderTabIcon}</View>}
-        <Text style={{ ...styles.contentStyle, fontFamily: fontFamily }}>
-          {tab.title}
-        </Text>
-        {isShowRedDot ? (
-          <View style={styles.view24}>
-            <View style={styles.relativeView}>
-              <IDot />
+      <>
+        <View
+          style={{
+            ...styles.tabContainer,
+            width: itemWidth,
+          }}
+        >
+          {renderTabIcon && showItemTabIcon && (
+            <View style={styles.tabIcon}>{renderTabIcon}</View>
+          )}
+          <Text
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              ...styles.contentStyle,
+              fontFamily: fontFamily,
+              fontWeight: isFocused ? "500" : "400",
+            }}
+          >
+            {tab.title}
+          </Text>
+          {isShowRedDot ? (
+            <View style={styles.view24}>
+              <View style={styles.relativeView}>
+                <IDot />
+              </View>
             </View>
-          </View>
-        ) : isShowBadge && tab.badgeNumber && tab.badgeNumber > 0 ? (
-          <View style={styles.view24}>
-            <View style={styles.relativeView}>
-              <IBadge content={tab.badgeNumber} />
+          ) : isShowBadge && tab.badgeNumber && tab.badgeNumber > 0 ? (
+            <View style={styles.view24}>
+              <View style={styles.relativeView}>
+                <IBadge content={tab.badgeNumber} />
+              </View>
             </View>
-          </View>
-        ) : null}
-      </View>
-      <View
-        style={{
-          width: ScreenUtils.scale(36),
-          height: ScreenUtils.scale(2),
-          borderRadius: ScreenUtils.scale(2),
-          backgroundColor: isFocused ? Color.brandA : Color.white6,
-        }}
-      />
-    </TouchableOpacity>
+          ) : null}
+        </View>
+        <View
+          style={{
+            width: ScreenUtils.scale(36),
+            height: ScreenUtils.scale(2),
+            borderRadius: ScreenUtils.scale(2),
+            backgroundColor: isFocused ? Color.brandA : undefined,
+          }}
+        />
+      </>
+    </TouchableHighlight>
   );
 };
 
@@ -74,6 +88,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: Color.white6,
   },
   tabContainer: {
     height: ConstantStyles.sizeMedium,
@@ -81,7 +96,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     paddingHorizontal: ConstantStyles.spacing8,
-    backgroundColor: Color.white6,
   },
   tabIcon: {
     width: ConstantStyles.iconSizeMedium,
@@ -93,7 +107,6 @@ const styles = StyleSheet.create({
   },
   contentStyle: {
     ...TextStyles.text14,
-    fontWeight: "400",
     color: Color.black6s,
   },
   view24: {

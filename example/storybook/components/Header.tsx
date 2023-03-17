@@ -1,13 +1,14 @@
-import { action } from "@storybook/addon-actions";
-import { select, text } from "@storybook/addon-knobs";
-import React, { FunctionComponent } from "react";
 import {
   BaseHeaderBar,
   BaseSearch,
+  Button,
+  ButtonVariants,
   HeaderTypes,
   Themes,
 } from "@phamquyen/rn-core-components";
-import { Text, TouchableOpacity } from "react-native";
+import { action } from "@storybook/addon-actions";
+import { select, text } from "@storybook/addon-knobs";
+import React, { FunctionComponent } from "react";
 
 export const HeaderDefault: FunctionComponent = () => {
   return (
@@ -21,9 +22,10 @@ export const HeaderDefault: FunctionComponent = () => {
       onPressGoBack={action("Handle go Back")}
       headerColor={select("Header color background", Themes.Color, undefined)}
       renderIconRight={
-        <TouchableOpacity>
-          <Text>Lưu</Text>
-        </TouchableOpacity>
+        <Button
+          variant={ButtonVariants.TEXT_LINK}
+          name={text("Button Right Name", "Lưu")}
+        />
       }
     />
   );

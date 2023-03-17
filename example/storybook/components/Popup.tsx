@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { text } from "@storybook/addon-knobs";
 import React, { FunctionComponent, useState } from "react";
 import { BasePopup, Button } from "@phamquyen/rn-core-components";
-import { ContainerView } from ".";
+import { ContainerView } from "./ContainerView";
 
 export const PopupPrimary: FunctionComponent = () => {
   const [show, setShow] = useState(false);

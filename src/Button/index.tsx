@@ -1,5 +1,5 @@
 import { Button } from "./Button";
-import { IconButton, IconButtonClear } from "./ButtonIcon";
+import { IconButtonClear } from "./ButtonIcon";
 import {
   ButtonProps,
   ButtonSize,
@@ -8,14 +8,22 @@ import {
   ButtonTypes,
   IconColorType,
   IconColor,
+  ButtonVariant,
+  ButtonVariants,
 } from "./types";
 
 export {
   Button,
-  IconButton,
   IconButtonClear,
   ButtonSizes,
   ButtonTypes,
+  ButtonVariants,
   IconColor,
 };
-export type { ButtonProps, ButtonSize, ButtonStyle, IconColorType };
+export type {
+  ButtonProps,
+  ButtonSize,
+  ButtonStyle,
+  IconColorType,
+  ButtonVariant,
+};

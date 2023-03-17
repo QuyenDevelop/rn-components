@@ -103,9 +103,7 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
                   }}
                   onPress={headerLeftOnPress || onCloseModal}
                 >
-                  {headerLeftView ? (
-                    headerLeftView
-                  ) : (
+                  {headerLeftView || (
                     <View style={styles.view24}>
                       <Image
                         source={Images.icClose}
@@ -121,6 +119,7 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
                   ...styles.headerTitle,
                   fontFamily: fontFamily,
                 }}
+                numberOfLines={1}
               >
                 {headerTitle}
               </Text>

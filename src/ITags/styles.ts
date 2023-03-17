@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { ScreenUtils, ConstantStyles, TextStyles } from "../Themes";
+import { ScreenUtils, ConstantStyles, TextStyles, Color } from "../Themes";
 
 export const styles = StyleSheet.create({
   container: {
@@ -23,9 +23,15 @@ export const styles = StyleSheet.create({
     height: ConstantStyles.iconSizeMedium,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: Color.black2s,
   },
   tagsNameStyle: {
     ...TextStyles.text14,
     fontWeight: "400",
+  },
+  overflowHidden: {
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

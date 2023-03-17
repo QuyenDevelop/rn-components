@@ -8,7 +8,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { IconButtonClear, IconColor } from "../Button";
-import { Color, ScreenUtils, ConstantStyles } from "../Themes";
+import { Color, ConstantStyles, ScreenUtils } from "../Themes";
 import { Images } from "../assets";
 
 export interface SearchProps extends TextInputProps {

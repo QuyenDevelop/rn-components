@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
   label: {
     ...TextStyles.text16,
-    color: Color.black5s,
+    color: Color.black6s,
     marginBottom: ConstantStyles.spacing8,
   },
   required: {

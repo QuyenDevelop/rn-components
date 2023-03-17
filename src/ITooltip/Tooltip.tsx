@@ -1,7 +1,7 @@
 import { Tooltip } from "@rneui/themed";
 import React, { FunctionComponent } from "react";
 import { StyleSheet, Text } from "react-native";
-import { Color, ScreenUtils, TextStyles } from "../Themes";
+import { Color, ConstantStyles, ScreenUtils, TextStyles } from "../Themes";
 
 export interface IToolTipProps {
   children?: React.ReactNode;
@@ -13,6 +13,7 @@ export interface IToolTipProps {
   fontFamily?: string;
   height?: number;
   width?: number;
+  duration?: number;
 }
 
 export const ITooltip: FunctionComponent<IToolTipProps> = ({
@@ -24,14 +25,23 @@ export const ITooltip: FunctionComponent<IToolTipProps> = ({
   fontFamily,
   height = ScreenUtils.scale(44),
   width = ScreenUtils.scale(280),
+  duration,
 }) => {
+  const maxWidth =
+    width <= ScreenUtils.scale(280) ? width : ScreenUtils.scale(280);
+
   const minHeight =
-    height >= ScreenUtils.scale(44) ? height : ScreenUtils.scale(44);
+    (height >= ScreenUtils.scale(44) ? height : ScreenUtils.scale(44)) ||
+    (height <= ScreenUtils.scale(104) ? height : ScreenUtils.scale(104));
+
+  React.useEffect(() => {
+    !!duration && setInterval(onCloseTooltip, duration);
+  }, [duration, onCloseTooltip]);
 
   return (
     <Tooltip
       height={minHeight}
-      width={width}
+      width={maxWidth}
       visible={isVisible}
       onOpen={onOpenTooltip}
       onClose={onCloseTooltip}
@@ -55,11 +65,12 @@ export const ITooltip: FunctionComponent<IToolTipProps> = ({
 const styles = StyleSheet.create({
   containerStyle: {
     flex: 1,
-    maxWidth: ScreenUtils.scale(280),
+    paddingVertical: ConstantStyles.spacing12,
   },
   messageStyle: {
     ...TextStyles.text14,
     color: Color.white6,
     fontWeight: "400",
+    textAlign: "left",
   },
 });
