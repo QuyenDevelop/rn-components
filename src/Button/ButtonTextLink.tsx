@@ -1,5 +1,10 @@
 import * as React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  TouchableHighlight,
+  View,
+} from "react-native";
 import { Color, ConstantStyles, TextStyles } from "../Themes";
 import { styles } from "./styles";
 import { ButtonProps, ButtonSizes } from "./types";
@@ -55,54 +60,52 @@ export const ButtonTextLink: React.FunctionComponent<ButtonProps> = ({
         };
 
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       style={{
         ...styles.enableStyle,
         maxHeight: getSize,
         minWidth: getSize,
         width: defaultWidth,
-        borderRadius: ConstantStyles.borderRadius8,
       }}
+      underlayColor={Color.black1}
       onPress={onPress}
       disabled={isDisabled}
     >
       <View style={styles.flexRow}>
-        {(renderLoading || buttonLeftView) && (
+        {!isLoading && buttonLeftView && (
           <View
             style={{ ...getIconStyle, marginRight: ConstantStyles.spacing8 }}
           >
-            {isLoading ? renderLoading : buttonLeftView}
+            {buttonLeftView}
           </View>
         )}
-        {name ? (
-          <Text
-            style={{
-              ...getContentStyle,
-              marginHorizontal: ConstantStyles.spacing4,
-            }}
-            numberOfLines={1}
+        {isLoading && (
+          <View
+            style={{ ...getIconStyle, marginRight: ConstantStyles.spacing8 }}
           >
-            {name}
-          </Text>
-        ) : (
-          <Text>Click</Text>
+            {renderLoading || (
+              <ActivityIndicator
+                color={isDisabled ? Color.black5s : Color.primary6s}
+                size={
+                  buttonSize === ButtonSizes.SMALL_SPECIAL
+                    ? ConstantStyles.iconSizeSmall
+                    : ConstantStyles.iconSizeMedium
+                }
+              />
+            )}
+          </View>
         )}
-        {buttonRightView &&
-          ((name && (
-            <View
-              style={{ ...getIconStyle, marginLeft: ConstantStyles.spacing8 }}
-            >
-              {buttonRightView}
-            </View>
-          )) ||
-            (buttonLeftView && (
-              <View
-                style={{ ...getIconStyle, marginLeft: ConstantStyles.spacing8 }}
-              >
-                {buttonRightView}
-              </View>
-            )))}
+        <Text style={{ ...getContentStyle }} numberOfLines={1}>
+          {name || "Link"}
+        </Text>
+        {buttonRightView ? (
+          <View
+            style={{ ...getIconStyle, marginLeft: ConstantStyles.spacing8 }}
+          >
+            {buttonRightView}
+          </View>
+        ) : null}
       </View>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };

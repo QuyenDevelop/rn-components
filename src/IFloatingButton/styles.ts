@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "flex-end",
     paddingHorizontal: ConstantStyles.spacing16,
-    paddingBottom: ConstantStyles.spacing40,
+    paddingBottom: ConstantStyles.spacing24,
     width: ScreenUtils.WIDTH_SCREEN,
   },
   iconCloseSup: {

@@ -30,6 +30,7 @@ export const IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
   content,
 }) => {
   const getColor = isDisabled ? Color.black3s : Color.primary6s;
+  const sizeValue = size * 1.5;
 
   return (
     <TouchableOpacity
@@ -38,27 +39,40 @@ export const IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
     >
       <TouchableHighlight
         onPress={!isDisabled ? handleCheck : undefined}
-        style={styles.touchContainer}
+        style={{
+          ...styles.touchContainer,
+          width: sizeValue,
+          height: sizeValue,
+          borderRadius: sizeValue / 2,
+        }}
         underlayColor={Color.black1}
       >
         <View
           style={{
-            ...styles.checkBoxStyle,
+            ...styles.touchContainer,
             width: size,
             height: size,
-            borderColor: getColor,
           }}
         >
-          {isChecked && (
-            <View
-              style={{
-                width: size / 2,
-                height: size / 2,
-                borderRadius: size / 4,
-                backgroundColor: getColor,
-              }}
-            />
-          )}
+          <View
+            style={{
+              ...styles.checkBoxStyle,
+              width: size - ScreenUtils.scale(4),
+              height: size - ScreenUtils.scale(4),
+              borderColor: getColor,
+            }}
+          >
+            {isChecked && (
+              <View
+                style={{
+                  width: size / 2,
+                  height: size / 2,
+                  borderRadius: size / 4,
+                  backgroundColor: getColor,
+                }}
+              />
+            )}
+          </View>
         </View>
       </TouchableHighlight>
       {content && (
@@ -85,6 +99,7 @@ export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
   content,
 }) => {
   const getColor = isDisabled ? Color.black3s : Color.primary6s;
+  const sizeValue = size * 1.5;
 
   return (
     <TouchableOpacity
@@ -94,33 +109,46 @@ export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
       <TouchableHighlight
         onPress={!isDisabled ? handleCheck : undefined}
         underlayColor={Color.black1}
-        style={styles.touchContainer}
+        style={{
+          ...styles.touchContainer,
+          width: sizeValue,
+          height: sizeValue,
+          borderRadius: sizeValue / 2,
+        }}
       >
         <View
           style={{
-            ...styles.radioContainer,
+            ...styles.touchContainer,
             width: size,
             height: size,
-            borderColor: getColor,
-            backgroundColor:
-              isDisabled && isChecked
-                ? Color.black3s
-                : isChecked
-                ? Color.primary6s
-                : Color.white6,
           }}
         >
-          {isChecked ? (
-            customIconRadioCheck ? (
-              customIconRadioCheck
-            ) : (
-              <Image
-                source={Images.icCheck}
-                style={styles.iconCloseStyle}
-                resizeMode="contain"
-              />
-            )
-          ) : null}
+          <View
+            style={{
+              ...styles.radioContainer,
+              width: size - ScreenUtils.scale(4),
+              height: size - ScreenUtils.scale(4),
+              borderColor: getColor,
+              backgroundColor:
+                isDisabled && isChecked
+                  ? Color.black3s
+                  : isChecked
+                  ? Color.primary6s
+                  : undefined,
+            }}
+          >
+            {isChecked ? (
+              customIconRadioCheck ? (
+                customIconRadioCheck
+              ) : (
+                <Image
+                  source={Images.icCheck}
+                  style={styles.iconCloseStyle}
+                  resizeMode="contain"
+                />
+              )
+            ) : null}
+          </View>
         </View>
       </TouchableHighlight>
       {content && (
@@ -143,12 +171,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   touchContainer: {
-    width: ScreenUtils.scale(36),
-    height: ScreenUtils.scale(36),
-    borderRadius: ScreenUtils.scale(18),
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: Color.white6,
   },
   checkBoxStyle: {
     borderRadius: ConstantStyles.borderRadius16,
@@ -160,7 +184,6 @@ const styles = StyleSheet.create({
     borderRadius: ConstantStyles.borderRadius4,
     justifyContent: "center",
     alignItems: "center",
-    marginRight: ConstantStyles.spacing8,
     borderWidth: 2 * StyleSheet.hairlineWidth,
   },
   iconCloseStyle: {

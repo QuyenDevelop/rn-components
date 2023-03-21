@@ -12,3 +12,4 @@ export * from "./FlexCenterView";
 export * from "./TabView";
 export * from "./Skeleton";
 export * from "./TagLabelTooltips";
+export * from "./ButtonDefault";

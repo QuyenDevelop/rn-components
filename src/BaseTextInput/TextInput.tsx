@@ -88,9 +88,12 @@ export const BaseTextInput: FunctionComponent<ITextInputProps> = ({
         </Text>
       )}
       <View
-        style={
-          editable ? [getInputStyle, inputStyle] : styles.inputDisableContainer
-        }
+        style={[
+          editable ? [getInputStyle, inputStyle] : styles.inputDisableContainer,
+          {
+            paddingHorizontal: ConstantStyles.spacing16,
+          },
+        ]}
       >
         {textLeftComponent && showTextLeftComponent && (
           <View>{textLeftComponent}</View>
@@ -111,6 +114,7 @@ export const BaseTextInput: FunctionComponent<ITextInputProps> = ({
               textLeftComponent && showTextLeftComponent
                 ? ConstantStyles.spacing8
                 : undefined,
+            marginRight: ConstantStyles.spacing8,
             height: height || ScreenUtils.scale(40),
             fontFamily: fontFamily,
           }}
@@ -131,6 +135,7 @@ export const BaseTextInput: FunctionComponent<ITextInputProps> = ({
             <IconButtonClear
               onPress={onClearInput}
               iconColor={IconColor.DARK}
+              backgroundColor={Color.black2s}
             />
           </View>
         )}

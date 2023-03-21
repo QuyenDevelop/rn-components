@@ -16,6 +16,7 @@ export const IBadge: FunctionComponent<BadgeProps> = ({
     <View
       style={{
         height: size,
+        minWidth: size,
         backgroundColor: color,
         borderRadius: cornerRadius,
         ...styles.container,

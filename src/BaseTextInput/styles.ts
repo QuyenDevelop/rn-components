@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
     borderRadius: ConstantStyles.borderRadius8,
     borderWidth: 2 * StyleSheet.hairlineWidth,
     borderColor: Color.black2s,
-    paddingHorizontal: ConstantStyles.spacing16,
   },
   inputFocusContainer: {
     flexDirection: "row",
@@ -30,7 +29,6 @@ export const styles = StyleSheet.create({
     borderRadius: ConstantStyles.borderRadius8,
     borderWidth: 2 * StyleSheet.hairlineWidth,
     borderColor: Color.blue6s,
-    paddingHorizontal: ConstantStyles.spacing16,
   },
   inputErrorContainer: {
     flexDirection: "row",
@@ -39,7 +37,6 @@ export const styles = StyleSheet.create({
     borderRadius: ConstantStyles.borderRadius8,
     borderWidth: 2 * StyleSheet.hairlineWidth,
     borderColor: Color.red6s,
-    paddingHorizontal: ConstantStyles.spacing16,
   },
   inputDisableContainer: {
     flexDirection: "row",
@@ -49,13 +46,11 @@ export const styles = StyleSheet.create({
     borderWidth: 2 * StyleSheet.hairlineWidth,
     borderColor: Color.black2s,
     backgroundColor: Color.black2s,
-    paddingHorizontal: ConstantStyles.spacing16,
   },
   input: {
     flex: 1,
     fontSize: 16,
     color: Color.black6s,
-    marginRight: ConstantStyles.spacing8,
   },
   errorMessage: {
     ...TextStyles.text14,
@@ -76,7 +71,7 @@ export const styles = StyleSheet.create({
   counter: {
     ...TextStyles.text14,
     color: Color.black5s,
-    width: ConstantStyles.spacing40,
+    width: ConstantStyles.sizeLarge,
     textAlign: "right",
   },
 });

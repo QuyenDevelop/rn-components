@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     color: Color.black6s,
   },
   view24: {
-    width: ConstantStyles.iconSizeMedium,
+    // width: ConstantStyles.iconSizeMedium,
     marginLeft: ConstantStyles.spacing4,
   },
   relativeView: {

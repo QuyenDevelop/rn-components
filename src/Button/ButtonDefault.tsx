@@ -1,5 +1,10 @@
 import * as React from "react";
-import { Text, TouchableHighlight, View } from "react-native";
+import {
+  Text,
+  TouchableHighlight,
+  View,
+  ActivityIndicator,
+} from "react-native";
 import { Color, ConstantStyles, TextStyles } from "../Themes";
 import { styles } from "./styles";
 import { ButtonProps, ButtonSizes, ButtonTypes } from "./types";
@@ -111,9 +116,21 @@ export const ButtonDefault: React.FunctionComponent<ButtonProps> = ({
               marginHorizontal: ConstantStyles.spacing4,
             }}
           >
-            {(renderLoading || buttonLeftView) && (
+            {!isLoading && buttonLeftView && (
+              <View style={{ ...getIconStyle }}>{buttonLeftView}</View>
+            )}
+            {isLoading && (
               <View style={{ ...getIconStyle }}>
-                {isLoading ? renderLoading : buttonLeftView}
+                {renderLoading || (
+                  <ActivityIndicator
+                    color={isDisabled ? Color.black5s : getButtonRightBGColor}
+                    size={
+                      buttonSize === ButtonSizes.SMALL_SPECIAL
+                        ? ConstantStyles.iconSizeSmall
+                        : ConstantStyles.iconSizeMedium
+                    }
+                  />
+                )}
               </View>
             )}
             {name && (
@@ -127,11 +144,10 @@ export const ButtonDefault: React.FunctionComponent<ButtonProps> = ({
                 {name}
               </Text>
             )}
-            {buttonRightView &&
-              ((name && <View style={getIconStyle}>{buttonRightView}</View>) ||
-                (buttonLeftView && (
-                  <View style={getIconStyle}>{buttonRightView}</View>
-                )))}
+            {(buttonRightView && buttonLeftView) ||
+            (buttonRightView && name) ? (
+              <View style={getIconStyle}>{buttonRightView}</View>
+            ) : null}
           </View>
         )}
       </View>

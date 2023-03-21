@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import {
   TextInput as Input,
@@ -7,7 +8,7 @@ import {
   View,
   ViewStyle,
 } from "react-native";
-import { Color, ScreenUtils } from "../Themes";
+import { Color, ConstantStyles, ScreenUtils } from "../Themes";
 import { styles } from "./styles";
 
 export declare interface ITextareaProps extends TextInputProps {
@@ -73,18 +74,26 @@ export const BaseTextArea: FunctionComponent<ITextareaProps> = ({
       {label && (
         <Text style={{ ...styles.label, fontFamily: fontFamily }}>{label}</Text>
       )}
-      <View style={editable ? getInputStyle : styles.inputDisableContainer}>
+      <View
+        style={[
+          editable ? getInputStyle : styles.inputDisableContainer,
+          {
+            paddingVertical: ConstantStyles.spacing16,
+          },
+        ]}
+      >
         <Input
           ref={inputRef}
           autoFocus={focus}
-          allowFontScaling={true}
           editable={editable}
           onChangeText={onChangeText}
           value={value}
           placeholderTextColor={Color.black4s}
           style={{
             ...styles.input,
-            height: height || ScreenUtils.scale(56),
+            height: height || ScreenUtils.scale(124),
+            paddingHorizontal: ConstantStyles.spacing16,
+            textAlignVertical: "top",
             fontFamily: fontFamily,
           }}
           onFocus={handleFocus}
@@ -96,7 +105,6 @@ export const BaseTextArea: FunctionComponent<ITextareaProps> = ({
       </View>
       <View style={styles.noteView}>
         <View
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             flex: 0.9,
           }}

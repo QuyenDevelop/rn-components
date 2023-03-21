@@ -89,7 +89,7 @@ export const BaseSearch: FunctionComponent<SearchProps> = ({
           onBlur={handleBlur}
           {...props}
         />
-        {props.value && onClearInput && (
+        {props.value && onClearInput && focus && (
           <View style={styles.iconClearView}>
             {clearTextIcon ? (
               clearTextIcon
@@ -97,6 +97,7 @@ export const BaseSearch: FunctionComponent<SearchProps> = ({
               <IconButtonClear
                 onPress={onClearInput}
                 iconColor={IconColor.DARK}
+                backgroundColor={Color.black2s}
               />
             )}
           </View>

@@ -53,9 +53,13 @@ export const ITooltip: FunctionComponent<IToolTipProps> = ({
           {message}
         </Text>
       }
+      withPointer
       pointerStyle={styles.containerStyle}
+      pointerColor={Color.black6s}
       backgroundColor={Color.black6s}
       containerStyle={styles.containerStyle}
+      skipAndroidStatusBar
+      closeOnlyOnBackdropPress
     >
       {children}
     </Tooltip>

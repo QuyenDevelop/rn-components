@@ -2,10 +2,11 @@ import React, { FunctionComponent } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
 import { IconButtonClear } from "../Button";
-import { ConstantStyles, ScreenUtils } from "../Themes";
+import { Color, ConstantStyles, ScreenUtils } from "../Themes";
 import { Support } from "./FloatingButton";
 import { styles } from "./styles";
 import { IComponentDIM } from "../Components";
+import { Images } from "../assets";
 
 interface ContentModal {
   ListSupport: Array<Support>;
@@ -52,6 +53,10 @@ export const ContentModal: FunctionComponent<ContentModal> = ({
         ))}
         <IconButtonClear
           size={ConstantStyles.sizeLarge}
+          renderIcon={
+            <Image source={Images.icFloatingClose} resizeMode="cover" />
+          }
+          backgroundColor={Color.primary1s}
           onPress={onCloseContent}
         />
       </View>

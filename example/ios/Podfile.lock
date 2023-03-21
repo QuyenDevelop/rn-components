@@ -78,7 +78,7 @@ PODS:
   - hermes-engine/Pre-built (0.71.3)
   - libevent (2.1.12)
   - OpenSSL-Universal (1.1.1100)
-  - quyenph-rn-components (1.0.1):
+  - quyenph-rn-components (1.1.0):
     - React-Core
   - RCT-Folly (2021.07.22.00):
     - boost
@@ -592,7 +592,7 @@ SPEC CHECKSUMS:
   hermes-engine: 38bfe887e456b33b697187570a08de33969f5db7
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
-  quyenph-rn-components: 75ecc1bc842da72c7c08e1d3b8c47a579b226d07
+  quyenph-rn-components: b66861fc2dad72a96d008d0849c2c5e594128726
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: bec48f07daf7bcdc2655a0cde84e07d24d2a9e2a
   RCTTypeSafety: 171394eebacf71e1cfad79dbfae7ee8fc16ca80a
