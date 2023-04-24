@@ -3,6 +3,7 @@ import React, {
   ForwardRefRenderFunction,
   memo,
   useRef,
+  useCallback,
 } from "react";
 import {
   GestureResponderEvent,
@@ -40,10 +41,58 @@ export interface BottomSheetProps {
 
 export interface BottomSheetRef {}
 
-export const BaseBottomSheetRef: ForwardRefRenderFunction<
+const styles = StyleSheet.create({
+  modalContainer: {
+    flex: 1,
+    margin: 0,
+    justifyContent: "flex-end",
+  },
+  contentContainer: {
+    borderTopLeftRadius: ConstantStyles.borderRadius16,
+    borderTopRightRadius: ConstantStyles.borderRadius16,
+    backgroundColor: Color.white6,
+    paddingBottom: ConstantStyles.spacing16,
+  },
+  headerView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: ConstantStyles.spacing4,
+    paddingHorizontal: ConstantStyles.spacing8,
+    borderBottomWidth: 2 * StyleSheet.hairlineWidth,
+    borderBottomColor: Color.black1s,
+  },
+  headerTitle: {
+    flex: 1,
+    textAlign: "center",
+    ...TextStyles.text16,
+    fontWeight: "500",
+    color: Color.black6s,
+  },
+  headerChildStyle: {
+    height: ConstantStyles.sizeLarge,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  view24: {
+    width: ConstantStyles.iconSizeMedium,
+    height: ConstantStyles.iconSizeMedium,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconCloseStyle: {
+    width: ConstantStyles.iconSizeMedium,
+    height: ConstantStyles.iconSizeMedium,
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+export const _BaseBottomSheetRef: ForwardRefRenderFunction<
   BottomSheetRef,
   BottomSheetProps
-> = memo((props, _ref) => {
+> = (props, _ref) => {
   const {
     isVisible,
     onCloseModal,
@@ -66,16 +115,21 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
     ScreenUtils.HEIGHT_SCREEN -
       ScreenUtils.getStatusBarHeight() -
       ScreenUtils.scale(24);
-  const containerViewStyle = [
-    { ...styles.contentContainer, height: height },
-    containerStyle,
-  ];
-  const onBackdropPress = () => {
+
+  const containerViewStyle: ViewStyle = {
+    ...styles.contentContainer,
+    ...containerStyle,
+    height: height,
+  };
+
+  const onBackdropPress = useCallback(() => {
     disableBackdrop ? undefined : onCloseModal?.();
-  };
-  const onSwipeComplete = () => {
+  }, [disableBackdrop, onCloseModal]);
+
+  const onSwipeComplete = useCallback(() => {
     disableSwipeComplete ? undefined : onCloseModal?.();
-  };
+  }, [disableSwipeComplete, onCloseModal]);
+
   return (
     <Modal
       useNativeDriver
@@ -150,54 +204,6 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
       </KeyboardAvoidingView>
     </Modal>
   );
-});
+};
 
-const styles = StyleSheet.create({
-  modalContainer: {
-    flex: 1,
-    margin: 0,
-    justifyContent: "flex-end",
-  },
-  contentContainer: {
-    borderTopLeftRadius: ConstantStyles.borderRadius16,
-    borderTopRightRadius: ConstantStyles.borderRadius16,
-    backgroundColor: Color.white6,
-    paddingBottom: ConstantStyles.spacing16,
-  },
-  headerView: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: ConstantStyles.spacing4,
-    paddingHorizontal: ConstantStyles.spacing8,
-    borderBottomWidth: 2 * StyleSheet.hairlineWidth,
-    borderBottomColor: Color.black1s,
-  },
-  headerTitle: {
-    flex: 1,
-    textAlign: "center",
-    ...TextStyles.text16,
-    fontWeight: "500",
-    color: Color.black6s,
-  },
-  headerChildStyle: {
-    height: ConstantStyles.sizeLarge,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  view24: {
-    width: ConstantStyles.iconSizeMedium,
-    height: ConstantStyles.iconSizeMedium,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  iconCloseStyle: {
-    width: ConstantStyles.iconSizeMedium,
-    height: ConstantStyles.iconSizeMedium,
-    overflow: "hidden",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
-export const BaseBottomSheet = forwardRef(BaseBottomSheetRef);
+export const BaseBottomSheet = memo(forwardRef(_BaseBottomSheetRef));
