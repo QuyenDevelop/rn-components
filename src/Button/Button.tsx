@@ -4,7 +4,7 @@ import { ButtonProps, ButtonVariants } from "./types";
 import { ButtonTextLink } from "./ButtonTextLink";
 import { IconButton } from "./ButtonIcon";
 
-export const Button: React.FunctionComponent<ButtonProps> = ({
+const _Button: React.FunctionComponent<ButtonProps> = ({
   variant = ButtonVariants.BUTTON,
   ...args
 }) => {
@@ -17,3 +17,5 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
 
   return <ButtonDefault {...args} />;
 };
+
+export const Button = React.memo(_Button);

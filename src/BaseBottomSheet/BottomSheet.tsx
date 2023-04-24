@@ -1,4 +1,9 @@
-import React, { forwardRef, ForwardRefRenderFunction, useRef } from "react";
+import React, {
+  forwardRef,
+  ForwardRefRenderFunction,
+  memo,
+  useRef,
+} from "react";
 import {
   GestureResponderEvent,
   Image,
@@ -38,7 +43,7 @@ export interface BottomSheetRef {}
 export const BaseBottomSheetRef: ForwardRefRenderFunction<
   BottomSheetRef,
   BottomSheetProps
-> = (props, _ref) => {
+> = memo((props, _ref) => {
   const {
     isVisible,
     onCloseModal,
@@ -145,7 +150,7 @@ export const BaseBottomSheetRef: ForwardRefRenderFunction<
       </KeyboardAvoidingView>
     </Modal>
   );
-};
+});
 
 const styles = StyleSheet.create({
   modalContainer: {

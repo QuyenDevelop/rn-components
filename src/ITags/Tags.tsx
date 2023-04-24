@@ -6,10 +6,9 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import { Color, ConstantStyles, ScreenUtils } from "../Themes";
+import { Color, ConstantStyles, ScreenUtils, TextStyles } from "../Themes";
 import { Images } from "../assets";
-import { styles } from "./styles";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, ViewStyle } from "react-native";
 
 export interface ITagsProps {
   width?: number;
@@ -24,7 +23,42 @@ export interface ITagsProps {
   onCloseTag?: () => void;
 }
 
-export const ITags: FunctionComponent<ITagsProps> = ({
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    height: ScreenUtils.scale(32),
+    paddingHorizontal: ConstantStyles.spacing8,
+    borderRadius: ConstantStyles.borderRadius16,
+    overflow: "hidden",
+  },
+  leftIconStyle: {
+    width: ConstantStyles.iconSizeMedium,
+    height: ConstantStyles.iconSizeMedium,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: ConstantStyles.spacing4,
+  },
+  rightIconStyle: {
+    width: ConstantStyles.iconSizeMedium,
+    height: ConstantStyles.iconSizeMedium,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Color.black2s,
+  },
+  tagsNameStyle: {
+    ...TextStyles.text14,
+    fontWeight: "400",
+  },
+  overflowHidden: {
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+const _ITags: FunctionComponent<ITagsProps> = ({
   isSelected,
   onSelectedTag,
   isShowClose,
@@ -35,7 +69,7 @@ export const ITags: FunctionComponent<ITagsProps> = ({
   width,
   onCloseTag,
 }) => {
-  const selectStyle = {
+  const selectStyle: ViewStyle = {
     width: width,
     maxWidth: ScreenUtils.WIDTH_SCREEN,
     backgroundColor: isSelected ? Color.black6s : Color.white6,
@@ -86,3 +120,4 @@ export const ITags: FunctionComponent<ITagsProps> = ({
     </TouchableHighlight>
   );
 };
+export const ITags = React.memo(_ITags);

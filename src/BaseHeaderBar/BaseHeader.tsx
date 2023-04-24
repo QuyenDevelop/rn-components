@@ -44,7 +44,7 @@ export interface HeaderBarProps {
   headerTextStyle?: TextStyle;
 }
 
-export const BaseHeaderBar: React.FunctionComponent<HeaderBarProps> = ({
+const _BaseHeaderBar: React.FunctionComponent<HeaderBarProps> = ({
   headerType = HeaderTypes.DARK,
   containerStyle,
   headerColor,
@@ -115,3 +115,5 @@ export const BaseHeaderBar: React.FunctionComponent<HeaderBarProps> = ({
     </View>
   );
 };
+
+export const BaseHeaderBar = React.memo(_BaseHeaderBar);

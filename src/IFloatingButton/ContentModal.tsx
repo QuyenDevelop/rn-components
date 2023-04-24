@@ -15,7 +15,7 @@ interface ContentModal {
   fontFamily?: string;
 }
 
-export const ContentModal: FunctionComponent<ContentModal> = ({
+const _ContentModal: FunctionComponent<ContentModal> = ({
   isShowContent,
   ListSupport,
   onCloseContent,
@@ -63,3 +63,5 @@ export const ContentModal: FunctionComponent<ContentModal> = ({
     </Modal>
   );
 };
+
+export const ContentModal = React.memo(_ContentModal);

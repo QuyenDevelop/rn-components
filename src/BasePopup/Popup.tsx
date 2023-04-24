@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, memo } from "react";
 import {
   Image,
   ImageBackground,
@@ -47,7 +47,7 @@ export interface PopupProps {
   fontFamily?: string;
 }
 
-export const BasePopup: FunctionComponent<PopupProps> = ({
+const _BasePopup: FunctionComponent<PopupProps> = ({
   isVisible,
   onClose,
   containerStyle,
@@ -180,3 +180,5 @@ export const BasePopup: FunctionComponent<PopupProps> = ({
     </Modal>
   );
 };
+
+export const BasePopup = memo(_BasePopup);

@@ -47,9 +47,44 @@ export interface SnackBarProperties {
   fontFamily?: string;
 }
 
+const styles = StyleSheet.create({
+  snackBar: {
+    flex: 1,
+    width: ScreenUtils.WIDTH_SCREEN - ConstantStyles.spacing16 * 2,
+    minHeight: ConstantStyles.sizeLarge,
+    position: "absolute",
+  },
+  snackBarContent: {
+    flex: 1,
+    paddingHorizontal: ConstantStyles.spacing16,
+    paddingVertical: ConstantStyles.spacing8,
+    borderRadius: ConstantStyles.borderRadius8,
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
+  contentStyle: {
+    flex: 1,
+    ...TextStyles.text14,
+    color: Color.white6,
+  },
+  iconView: {
+    width: ConstantStyles.iconSizeMedium,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: ConstantStyles.spacing8,
+  },
+  flexRow: { flex: 1, flexDirection: "row" },
+  buttonName: {
+    ...TextStyles.text14,
+    color: Color.white6,
+    fontWeight: "500",
+  },
+});
+
 export interface SnackBarProps extends ViewProps, SnackBarProperties {}
 
-export const BaseSnackBar = React.forwardRef<SnackRef, SnackBarProps>(
+const _BaseSnackBar = React.forwardRef<SnackRef, SnackBarProps>(
   (
     {
       message,
@@ -67,12 +102,13 @@ export const BaseSnackBar = React.forwardRef<SnackRef, SnackBarProps>(
   ) => {
     const animatedValue = React.useRef(new Animated.Value(0));
 
-    const snackBarBG =
-      type === SnackBarTypes.INFO
+    const snackBarBG = React.useMemo(() => {
+      return type === SnackBarTypes.INFO
         ? Color.black6s
         : type === SnackBarTypes.ERROR
         ? Color.red6s
         : Color.green6s;
+    }, [type]);
 
     const showSnackBar = React.useCallback(() => {
       Animated.timing(animatedValue.current, {
@@ -81,18 +117,17 @@ export const BaseSnackBar = React.forwardRef<SnackRef, SnackBarProps>(
         useNativeDriver: false,
       }).start(() => {
         const hideTimer = setTimeout(() => hideSnackBar(), duration);
-
         return () => clearTimeout(hideTimer);
       });
     }, [duration]);
 
-    const hideSnackBar = () => {
+    const hideSnackBar = React.useCallback(() => {
       Animated.timing(animatedValue.current, {
         toValue: 0,
         duration: 1000,
         useNativeDriver: false,
       }).start();
-    };
+    }, []);
 
     React.useEffect(() => {
       showSnackBar();
@@ -153,37 +188,4 @@ export const BaseSnackBar = React.forwardRef<SnackRef, SnackBarProps>(
   }
 );
 
-const styles = StyleSheet.create({
-  snackBar: {
-    flex: 1,
-    width: ScreenUtils.WIDTH_SCREEN - ConstantStyles.spacing16 * 2,
-    minHeight: ConstantStyles.sizeLarge,
-    position: "absolute",
-  },
-  snackBarContent: {
-    flex: 1,
-    paddingHorizontal: ConstantStyles.spacing16,
-    paddingVertical: ConstantStyles.spacing8,
-    borderRadius: ConstantStyles.borderRadius8,
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-  },
-  contentStyle: {
-    flex: 1,
-    ...TextStyles.text14,
-    color: Color.white6,
-  },
-  iconView: {
-    width: ConstantStyles.iconSizeMedium,
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: ConstantStyles.spacing8,
-  },
-  flexRow: { flex: 1, flexDirection: "row" },
-  buttonName: {
-    ...TextStyles.text14,
-    color: Color.white6,
-    fontWeight: "500",
-  },
-});
+export const BaseSnackBar = React.memo(_BaseSnackBar);

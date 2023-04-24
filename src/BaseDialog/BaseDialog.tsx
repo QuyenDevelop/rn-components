@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, memo, useCallback } from "react";
 import type { ViewStyle } from "react-native";
 import { KeyboardAvoidingView, StyleSheet, Text, View } from "react-native";
 import Modal from "react-native-modal";
@@ -52,86 +52,90 @@ export interface DialogProps {
   backdropOpacity?: number;
 }
 
-export const BaseDialog: FunctionComponent<DialogProps> = ({
-  isVisible,
-  onClose,
-  containerStyle,
-  // children,
-  fontFamily,
-  title,
-  message,
-  disableBackdrop = false,
-  disableSwipeComplete = false,
-  backdropOpacity,
-  buttonCancelName,
-  onPressCancel,
-  buttonAcceptName,
-  onPressAccept,
-}) => {
-  const onBackdropPress = () => {
-    disableBackdrop ? undefined : onClose?.();
-  };
-  const onSwipeComplete = () => {
-    disableSwipeComplete ? undefined : onClose?.();
-  };
-  return (
-    <Modal
-      useNativeDriver
-      useNativeDriverForBackdrop
-      statusBarTranslucent
-      propagateSwipe={true}
-      hardwareAccelerated={false}
-      onBackdropPress={onBackdropPress}
-      onBackButtonPress={onClose}
-      onSwipeComplete={onSwipeComplete}
-      customBackdrop={<IComponentDIM onPress={onBackdropPress} />}
-      onModalHide={onClose}
-      style={styles.modalContainer}
-      isVisible={isVisible}
-      animationOut={"fadeOut"}
-      animationIn={"fadeIn"}
-      backdropOpacity={backdropOpacity || 0.5}
-      hideModalContentWhileAnimating={true}
-      deviceHeight={ScreenUtils.HEIGHT_SCREEN}
-    >
-      <KeyboardAvoidingView behavior="position" enabled>
-        <View style={[styles.contentContainer, containerStyle]}>
-          <Text
-            style={{ ...styles.title, fontFamily: fontFamily }}
-            numberOfLines={2}
-          >
-            {title}
-          </Text>
-          <Text
-            style={{ ...styles.message, fontFamily: fontFamily }}
-            numberOfLines={2}
-          >
-            {message}
-          </Text>
-          <View style={styles.buttonBox}>
-            {buttonCancelName && (
-              <Button
-                buttonStyle={ButtonTypes.SECONDARY_ONE}
-                name={buttonCancelName}
-                onPress={onPressCancel || onClose}
-              />
-            )}
-            {buttonCancelName && (
-              <ISpacingHorizontal size={ConstantStyles.spacing8} />
-            )}
-            {buttonAcceptName && onPressAccept && (
-              <Button
-                buttonStyle={ButtonTypes.PRIMARY}
-                name={buttonAcceptName}
-                onPress={onPressAccept}
-              />
-            )}
+export const BaseDialog: FunctionComponent<DialogProps> = memo(
+  ({
+    isVisible,
+    onClose,
+    containerStyle,
+    // children,
+    fontFamily,
+    title,
+    message,
+    disableBackdrop = false,
+    disableSwipeComplete = false,
+    backdropOpacity,
+    buttonCancelName,
+    onPressCancel,
+    buttonAcceptName,
+    onPressAccept,
+  }) => {
+    const onBackdropPress = useCallback(() => {
+      disableBackdrop ? undefined : onClose?.();
+    }, [disableBackdrop, onClose]);
+
+    const onSwipeComplete = useCallback(() => {
+      disableSwipeComplete ? undefined : onClose?.();
+    }, [disableSwipeComplete, onClose]);
+
+    return (
+      <Modal
+        useNativeDriver
+        useNativeDriverForBackdrop
+        statusBarTranslucent
+        propagateSwipe={true}
+        hardwareAccelerated={false}
+        onBackdropPress={onBackdropPress}
+        onBackButtonPress={onClose}
+        onSwipeComplete={onSwipeComplete}
+        customBackdrop={<IComponentDIM onPress={onBackdropPress} />}
+        onModalHide={onClose}
+        style={styles.modalContainer}
+        isVisible={isVisible}
+        animationOut={"fadeOut"}
+        animationIn={"fadeIn"}
+        backdropOpacity={backdropOpacity || 0.5}
+        hideModalContentWhileAnimating={true}
+        deviceHeight={ScreenUtils.HEIGHT_SCREEN}
+      >
+        <KeyboardAvoidingView behavior="position" enabled>
+          <View style={[styles.contentContainer, containerStyle]}>
+            <Text
+              style={{ ...styles.title, fontFamily: fontFamily }}
+              numberOfLines={2}
+            >
+              {title}
+            </Text>
+            <Text
+              style={{ ...styles.message, fontFamily: fontFamily }}
+              numberOfLines={2}
+            >
+              {message}
+            </Text>
+            <View style={styles.buttonBox}>
+              {buttonCancelName && (
+                <Button
+                  buttonStyle={ButtonTypes.SECONDARY_ONE}
+                  name={buttonCancelName}
+                  onPress={onPressCancel || onClose}
+                />
+              )}
+              {buttonCancelName && (
+                <ISpacingHorizontal size={ConstantStyles.spacing8} />
+              )}
+              {buttonAcceptName && onPressAccept && (
+                <Button
+                  buttonStyle={ButtonTypes.PRIMARY}
+                  name={buttonAcceptName}
+                  onPress={onPressAccept}
+                />
+              )}
+            </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
-    </Modal>
-  );
-};
+        </KeyboardAvoidingView>
+      </Modal>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   modalContainer: {

@@ -16,7 +16,20 @@ export interface IToolTipProps {
   duration?: number;
 }
 
-export const ITooltip: FunctionComponent<IToolTipProps> = ({
+const styles = StyleSheet.create({
+  containerStyle: {
+    flex: 1,
+    paddingVertical: ConstantStyles.spacing12,
+  },
+  messageStyle: {
+    ...TextStyles.text14,
+    color: Color.white6,
+    fontWeight: "400",
+    textAlign: "left",
+  },
+});
+
+const _ITooltip: FunctionComponent<IToolTipProps> = ({
   isVisible,
   onCloseTooltip,
   onOpenTooltip,
@@ -66,15 +79,4 @@ export const ITooltip: FunctionComponent<IToolTipProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    paddingVertical: ConstantStyles.spacing12,
-  },
-  messageStyle: {
-    ...TextStyles.text14,
-    color: Color.white6,
-    fontWeight: "400",
-    textAlign: "left",
-  },
-});
+export const ITooltip = React.memo(_ITooltip);

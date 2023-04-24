@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import * as React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import { Color, ScreenUtils, ConstantStyles, TextStyles } from "../Themes";
 import type { EmptyStateProps } from "./types";
@@ -12,7 +12,42 @@ import { Button } from "../Button";
   - User finds no content from Search or Filter.
 */
 
-export const IEmptyState: FunctionComponent<EmptyStateProps> = ({
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: ConstantStyles.spacing16,
+    paddingVertical: ConstantStyles.spacing24,
+  },
+  imageStyle: {
+    width: ScreenUtils.scale(168),
+    height: ScreenUtils.scale(168),
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  emptyContentStyle: {
+    paddingVertical: ConstantStyles.spacing16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  titleStyle: {
+    ...TextStyles.text16,
+    fontWeight: "500",
+    marginBottom: ConstantStyles.spacing8,
+    textAlign: "center",
+    color: Color.black6s,
+  },
+  messageStyle: {
+    ...TextStyles.text14,
+    fontWeight: "400",
+    textAlign: "center",
+    color: Color.black5s,
+  },
+});
+
+const _IEmptyState: React.FunctionComponent<EmptyStateProps> = ({
   imgSource,
   title,
   message,
@@ -60,37 +95,4 @@ export const IEmptyState: FunctionComponent<EmptyStateProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: ConstantStyles.spacing16,
-    paddingVertical: ConstantStyles.spacing24,
-  },
-  imageStyle: {
-    width: ScreenUtils.scale(168),
-    height: ScreenUtils.scale(168),
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  emptyContentStyle: {
-    paddingVertical: ConstantStyles.spacing16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  titleStyle: {
-    ...TextStyles.text16,
-    fontWeight: "500",
-    marginBottom: ConstantStyles.spacing8,
-    textAlign: "center",
-    color: Color.black6s,
-  },
-  messageStyle: {
-    ...TextStyles.text14,
-    fontWeight: "400",
-    textAlign: "center",
-    color: Color.black5s,
-  },
-});
+export const IEmptyState = React.memo(_IEmptyState);

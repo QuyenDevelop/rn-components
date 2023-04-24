@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
   },
 });
 
-export const ITabView: FunctionComponent<ITabsProps> = ({
+const _ITabView: FunctionComponent<ITabsProps> = ({
   navigationState,
   onIndexChange,
   isHideTabBar = false,
@@ -48,12 +48,13 @@ export const ITabView: FunctionComponent<ITabsProps> = ({
   isShowRedDot,
   isShowBadge,
 }) => {
+  const flatListRef = useRef<FlatList>(null);
   const index = navigationState.index || 0;
+
   const itemWidth = isFixed
     ? (ScreenUtils.WIDTH_SCREEN - ConstantStyles.spacing8 * 2) /
       navigationState.routes.length
     : undefined;
-  const flatListRef = useRef<FlatList>(null);
 
   const onChangeTabIndex = (i: number) => {
     flatListRef.current?.scrollToIndex({
@@ -119,3 +120,5 @@ export const ITabView: FunctionComponent<ITabsProps> = ({
     </View>
   );
 };
+
+export const ITabView = React.memo(_ITabView);

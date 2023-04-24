@@ -1,18 +1,10 @@
-import React, { FunctionComponent } from "react";
+import * as React from "react";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import { Color, ScreenUtils } from "../Themes";
 
 interface DimProps {
   onPress?: () => void;
 }
-
-export const IComponentDIM: FunctionComponent<DimProps> = ({ onPress }) => {
-  return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <View style={styles.container} />
-    </TouchableWithoutFeedback>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +14,13 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
 });
+
+const _IComponentDIM: React.FC<DimProps> = ({ onPress }) => {
+  return (
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container} />
+    </TouchableWithoutFeedback>
+  );
+};
+
+export const IComponentDIM = React.memo(_IComponentDIM);

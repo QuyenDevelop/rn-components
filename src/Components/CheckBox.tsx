@@ -21,7 +21,34 @@ export interface CheckBoxProps {
   handleCheck?: () => void;
 }
 
-export const IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  touchContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  checkBoxStyle: {
+    borderRadius: ConstantStyles.borderRadius16,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2 * StyleSheet.hairlineWidth,
+  },
+  radioContainer: {
+    borderRadius: ConstantStyles.borderRadius4,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2 * StyleSheet.hairlineWidth,
+  },
+  iconCloseStyle: {
+    width: ScreenUtils.scale(12),
+    height: ScreenUtils.scale(12),
+  },
+});
+
+const _IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
   size = ConstantStyles.iconSizeMedium,
   isChecked,
   isDisabled,
@@ -90,7 +117,7 @@ export const IRadioCheckBox: FunctionComponent<CheckBoxProps> = ({
   );
 };
 
-export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
+const _ICheckBox: FunctionComponent<CheckBoxProps> = ({
   size = ConstantStyles.iconSizeMedium,
   isChecked,
   isDisabled,
@@ -165,29 +192,5 @@ export const ICheckBox: FunctionComponent<CheckBoxProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  touchContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  checkBoxStyle: {
-    borderRadius: ConstantStyles.borderRadius16,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 2 * StyleSheet.hairlineWidth,
-  },
-  radioContainer: {
-    borderRadius: ConstantStyles.borderRadius4,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 2 * StyleSheet.hairlineWidth,
-  },
-  iconCloseStyle: {
-    width: ScreenUtils.scale(12),
-    height: ScreenUtils.scale(12),
-  },
-});
+export const ICheckBox = React.memo(_ICheckBox);
+export const IRadioCheckBox = React.memo(_IRadioCheckBox);

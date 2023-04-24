@@ -3,7 +3,14 @@ import { Text, View, StyleSheet } from "react-native";
 import { Color, ConstantStyles, TextStyles } from "../Themes";
 import type { BadgeProps } from "./types";
 
-export const IBadge: FunctionComponent<BadgeProps> = ({
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+const _IBadge: FunctionComponent<BadgeProps> = ({
   size = ConstantStyles.iconSizeSmall,
   color = Color.red6s,
   content,
@@ -42,9 +49,4 @@ export const IBadge: FunctionComponent<BadgeProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export const IBadge = React.memo(_IBadge);

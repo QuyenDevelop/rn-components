@@ -23,7 +23,7 @@ export interface FloatingButtonProps {
   floatingImage: ImageSourcePropType;
 }
 
-export const IFloatingButton: FunctionComponent<FloatingButtonProps> = ({
+const _IFloatingButton: FunctionComponent<FloatingButtonProps> = ({
   ListSupport,
   floatingImage,
 }) => {
@@ -110,3 +110,5 @@ export const IFloatingButton: FunctionComponent<FloatingButtonProps> = ({
     </>
   );
 };
+
+export const IFloatingButton = React.memo(_IFloatingButton);

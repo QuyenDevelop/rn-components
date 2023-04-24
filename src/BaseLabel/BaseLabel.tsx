@@ -23,40 +23,41 @@ export interface LabelProps {
   content: string;
 }
 
-export const BaseLabel: React.FunctionComponent<LabelProps> = ({
-  fontFamily,
-  children,
-  content,
-  labelType = LabelTypes.INFO,
-}) => {
-  const getLabelColorType =
-    labelType === LabelTypes.INFO
-      ? Color.primary5s
-      : labelType === LabelTypes.BLUE
-      ? Color.blue5s
-      : labelType === LabelTypes.GREEN
-      ? Color.green5s
-      : labelType === LabelTypes.ORANGE
-      ? Color.orange5s
-      : Color.red5s;
-  return (
-    <View
-      style={{
-        ...styles.container,
-        borderColor: getLabelColorType,
-        backgroundColor: getLabelColorType,
-      }}
-    >
-      {children && <View style={styles.childrenView}>{children}</View>}
-      <Text
-        style={{ ...styles.contentStyle, fontFamily: fontFamily }}
-        numberOfLines={1}
+export const BaseLabel: React.FunctionComponent<LabelProps> = React.memo(
+  ({ fontFamily, children, content, labelType = LabelTypes.INFO }) => {
+    const getLabelColorType = React.useMemo(
+      () =>
+        labelType === LabelTypes.INFO
+          ? Color.primary5s
+          : labelType === LabelTypes.BLUE
+          ? Color.blue5s
+          : labelType === LabelTypes.GREEN
+          ? Color.green5s
+          : labelType === LabelTypes.ORANGE
+          ? Color.orange5s
+          : Color.red5s,
+      [labelType]
+    );
+
+    return (
+      <View
+        style={{
+          ...styles.container,
+          borderColor: getLabelColorType,
+          backgroundColor: getLabelColorType,
+        }}
       >
-        {content}
-      </Text>
-    </View>
-  );
-};
+        {children && <View style={styles.childrenView}>{children}</View>}
+        <Text
+          style={{ ...styles.contentStyle, fontFamily: fontFamily }}
+          numberOfLines={1}
+        >
+          {content}
+        </Text>
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   container: {

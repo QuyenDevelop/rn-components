@@ -1,6 +1,5 @@
-import { Text } from "@rneui/themed";
 import React, { FunctionComponent } from "react";
-import { StyleSheet, TouchableHighlight, View } from "react-native";
+import { StyleSheet, TouchableHighlight, View, Text } from "react-native";
 import type { TabModel } from ".";
 import { IBadge, IDot } from "../Components";
 import { Color, ScreenUtils, ConstantStyles, TextStyles } from "../Themes";
@@ -19,7 +18,42 @@ export interface ITabItemProps {
   fontFamily?: string;
 }
 
-export const ITabBarItem: FunctionComponent<ITabItemProps> = ({
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Color.white6,
+  },
+  tabContainer: {
+    height: ConstantStyles.sizeMedium,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    paddingHorizontal: ConstantStyles.spacing8,
+  },
+  tabIcon: {
+    width: ConstantStyles.iconSizeMedium,
+    height: ConstantStyles.iconSizeMedium,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: ConstantStyles.spacing4,
+    overflow: "hidden",
+  },
+  contentStyle: {
+    ...TextStyles.text14,
+    color: Color.black6s,
+  },
+  view24: {
+    // width: ConstantStyles.iconSizeMedium,
+    marginLeft: ConstantStyles.spacing4,
+  },
+  relativeView: {
+    position: "relative",
+    top: -ConstantStyles.spacing4,
+  },
+});
+
+const _ITabBarItem: FunctionComponent<ITabItemProps> = ({
   tab,
   index,
   isFocused,
@@ -84,37 +118,4 @@ export const ITabBarItem: FunctionComponent<ITabItemProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Color.white6,
-  },
-  tabContainer: {
-    height: ConstantStyles.sizeMedium,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    paddingHorizontal: ConstantStyles.spacing8,
-  },
-  tabIcon: {
-    width: ConstantStyles.iconSizeMedium,
-    height: ConstantStyles.iconSizeMedium,
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: ConstantStyles.spacing4,
-    overflow: "hidden",
-  },
-  contentStyle: {
-    ...TextStyles.text14,
-    color: Color.black6s,
-  },
-  view24: {
-    // width: ConstantStyles.iconSizeMedium,
-    marginLeft: ConstantStyles.spacing4,
-  },
-  relativeView: {
-    position: "relative",
-    top: -ConstantStyles.spacing4,
-  },
-});
+export const ITabBarItem = React.memo(_ITabBarItem);

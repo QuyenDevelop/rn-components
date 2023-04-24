@@ -8,7 +8,7 @@ export interface ISkeletonProps {
   cornerRadius?: number;
 }
 
-export const ILineSkeleton: FunctionComponent<ISkeletonProps> = ({
+const _ILineSkeleton: FunctionComponent<ISkeletonProps> = ({
   width,
   height = ConstantStyles.spacing8,
   cornerRadius = ConstantStyles.borderRadius8,
@@ -33,3 +33,5 @@ export const ILineSkeleton: FunctionComponent<ISkeletonProps> = ({
     </Placeholder>
   );
 };
+
+export const ILineSkeleton = React.memo(_ILineSkeleton);

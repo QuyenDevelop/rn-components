@@ -29,7 +29,7 @@ export declare interface ITextareaProps extends TextInputProps {
   fontFamily?: string;
 }
 
-export const BaseTextArea: FunctionComponent<ITextareaProps> = ({
+const _BaseTextArea: FunctionComponent<ITextareaProps> = ({
   label,
   containerStyle,
   editable = true,
@@ -54,20 +54,23 @@ export const BaseTextArea: FunctionComponent<ITextareaProps> = ({
     }
   }, [isFocus, editable]);
 
-  const handleFocus = () => {
+  const handleFocus = React.useCallback(() => {
     props?.onFocus;
     setFocus(true);
-  };
-  const handleBlur = () => {
+  }, [props?.onFocus]);
+
+  const handleBlur = React.useCallback(() => {
     props?.onBlur;
     setFocus(false);
-  };
+  }, [props?.onBlur]);
 
-  const getInputStyle = errorMessage
-    ? styles.inputErrorContainer
-    : focus
-    ? styles.inputFocusContainer
-    : styles.inputDefaultContainer;
+  const getInputStyle = React.useMemo(() => {
+    return errorMessage
+      ? styles.inputErrorContainer
+      : focus
+      ? styles.inputFocusContainer
+      : styles.inputDefaultContainer;
+  }, [errorMessage, focus]);
 
   return (
     <View style={[styles.container, containerStyle]}>
@@ -134,3 +137,5 @@ export const BaseTextArea: FunctionComponent<ITextareaProps> = ({
     </View>
   );
 };
+
+export const BaseTextArea = React.memo(_BaseTextArea);

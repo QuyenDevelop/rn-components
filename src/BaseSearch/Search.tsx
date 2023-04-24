@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import * as React from "react";
 import {
   Image,
   StyleSheet,
@@ -28,7 +28,47 @@ export interface SearchProps extends TextInputProps {
   fontFamily?: string;
 }
 
-export const BaseSearch: FunctionComponent<SearchProps> = ({
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+  },
+  inputDefaultContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    overflow: "hidden",
+    borderRadius: ConstantStyles.borderRadius8,
+    borderWidth: 2 * StyleSheet.hairlineWidth,
+    borderColor: Color.black2s,
+    paddingHorizontal: ConstantStyles.spacing12,
+  },
+  inputFocusContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    overflow: "hidden",
+    borderRadius: ConstantStyles.borderRadius8,
+    borderWidth: 2 * StyleSheet.hairlineWidth,
+    borderColor: Color.blue6s,
+    paddingHorizontal: ConstantStyles.spacing12,
+  },
+  input: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: "400",
+    color: Color.black6s,
+    height: ScreenUtils.scale(36),
+    textAlignVertical: "center",
+  },
+  iconClearView: {
+    width: ConstantStyles.iconSizeMedium,
+    height: ConstantStyles.iconSizeMedium,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: ConstantStyles.spacing8,
+  },
+});
+
+const _BaseSearch: React.FunctionComponent<SearchProps> = ({
   placeHolder,
   isFocus,
   editable,
@@ -38,25 +78,25 @@ export const BaseSearch: FunctionComponent<SearchProps> = ({
   fontFamily,
   ...props
 }) => {
-  const [focus, setFocus] = useState<boolean>(false);
-  const inputRef = useRef<TextInput>(null);
+  const [focus, setFocus] = React.useState<boolean>(false);
+  const inputRef = React.useRef<TextInput>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isFocus) {
       inputRef.current?.focus;
       setFocus(editable ? isFocus : false);
     }
   }, [isFocus, editable]);
 
-  const handleFocus = () => {
+  const handleFocus = React.useCallback(() => {
     props?.onFocus;
     setFocus(true);
-  };
+  }, [props?.onFocus]);
 
-  const handleBlur = () => {
+  const handleBlur = React.useCallback(() => {
     props?.onBlur;
     setFocus(false);
-  };
+  }, [props?.onBlur]);
 
   const getInputStyle = focus
     ? styles.inputFocusContainer
@@ -107,42 +147,4 @@ export const BaseSearch: FunctionComponent<SearchProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-  },
-  inputDefaultContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    overflow: "hidden",
-    borderRadius: ConstantStyles.borderRadius8,
-    borderWidth: 2 * StyleSheet.hairlineWidth,
-    borderColor: Color.black2s,
-    paddingHorizontal: ConstantStyles.spacing12,
-  },
-  inputFocusContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    overflow: "hidden",
-    borderRadius: ConstantStyles.borderRadius8,
-    borderWidth: 2 * StyleSheet.hairlineWidth,
-    borderColor: Color.blue6s,
-    paddingHorizontal: ConstantStyles.spacing12,
-  },
-  input: {
-    flex: 1,
-    fontSize: 14,
-    fontWeight: "400",
-    color: Color.black6s,
-    height: ScreenUtils.scale(36),
-    textAlignVertical: "center",
-  },
-  iconClearView: {
-    width: ConstantStyles.iconSizeMedium,
-    height: ConstantStyles.iconSizeMedium,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: ConstantStyles.spacing8,
-  },
-});
+export const BaseSearch = React.memo(_BaseSearch);

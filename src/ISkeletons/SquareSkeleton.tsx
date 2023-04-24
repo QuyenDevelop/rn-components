@@ -8,7 +8,7 @@ export interface ISquareSkeletonProps {
   cornerRadius?: number;
 }
 
-export const ISquareSkeleton: FunctionComponent<ISquareSkeletonProps> = ({
+const _ISquareSkeleton: FunctionComponent<ISquareSkeletonProps> = ({
   size = ConstantStyles.sizeLarge,
   cornerRadius = ConstantStyles.borderRadius8,
   isCircle = false,
@@ -34,3 +34,5 @@ export const ISquareSkeleton: FunctionComponent<ISquareSkeletonProps> = ({
     </Placeholder>
   );
 };
+
+export const ISquareSkeleton = React.memo(_ISquareSkeleton);
